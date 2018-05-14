@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'sites/view/:id', canActivate: [AuthGuard], component: SingleSiteComponent },
   { path: 'home', component: HomeComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'sites' }
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

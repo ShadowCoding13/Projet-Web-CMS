@@ -1,41 +1,43 @@
 <header>
 
-<div class="container">
-<!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark transparent" [containerInside]="false">
+<div class="container-nav">
+    <!--Navbar-->
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark transparent" [containerInside]="false">
            
-    <!-- Navbar brand -->
-    <logo><a class="navbar-brand" href="#">My Best CMS</a></logo>
-    
-    <!-- Collapsible content -->
-    <links>
-    
-        <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link waves-light" routerLink="home" mdbWavesEffect>Accueil</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active" *ngIf="isAuth">
-                <a class="nav-link waves-light" routerLink="my-sites" mdbWavesEffect>Mes Sites</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active" *ngIf="!isAuth">
-                <a class="nav-link waves-light" routerLink="auth/signup" mdbWavesEffect>Créer un compte</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active" *ngIf="!isAuth">
-                <a class="nav-link waves-light" routerLink="auth/signin" mdbWavesEffect>Connexion</a>
-            </li>
-        </ul>
-    
-        <button type="button" *ngIf="isAuth" class="btn btn-sm rgba-white-slight waves-light" mdbWavesEffect routerLink="auth/my-account"><i class="fa fa-user mr-2"></i>Mon Compte</button>
-        <button class="btn btn-sm rgba-white-slight waves-light"
-                    (click)="onSignOut()"
-                    *ngIf="isAuth"><i class="fa fa-user mr-2"></i>Déconnexion</button>
-        <!-- Links -->
-    </links>
-    <!-- Collapsible content -->
-    
-</mdb-navbar>
-<!--/.Navbar--> 
+        <!-- Navbar brand -->
+        <logo>
+            <a class="navbar-brand" href="#">My Best CMS</a>
+        </logo>
+        
+        <!-- Collapsible content -->
+        <links>
+        
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link waves-light" routerLink="home" mdbWavesEffect>Accueil</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="isAuth">
+                    <a class="nav-link waves-light" routerLink="my-sites" mdbWavesEffect>Mes Sites</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="!isAuth">
+                    <a class="nav-link waves-light" routerLink="auth/signup" mdbWavesEffect>Créer un compte</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="!isAuth">
+                    <a class="nav-link waves-light" routerLink="auth/signin" mdbWavesEffect>Connexion</a>
+                </li>
+            </ul>
+        
+            <button type="button" *ngIf="isAuth" class="btn btn-sm rgba-white-slight waves-light" mdbWavesEffect routerLink="auth/my-account"><i class="fa fa-user"></i></button>
+            <button class="btn btn-sm rgba-white-slight waves-light"
+                        (click)="onSignOut()"
+                        *ngIf="isAuth"><i class="fa fa-close" aria-hidden="true"></i></button>
+            <!-- Links -->
+        </links>
+        <!-- Collapsible content -->
+        
+    </mdb-navbar>
+    <!--/.Navbar--> 
 </div>
 
 </header>

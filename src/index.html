@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Cms</title>
+  <title>My Best CMS</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,5 +10,19 @@
 </head>
 <body class="deep-purple lighten-5">
   <app-root></app-root>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        
+      .then((registration) => {
+
+        console.log('SW registered');
+      })
+      .catch((err) => {
+
+        console.log('SW error', err);
+      });
+    }
+  </script>
 </body>
 </html>

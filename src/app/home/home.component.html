@@ -1,19 +1,45 @@
 <app-jumbotron [title]=title [subtitle]=subtitle></app-jumbotron>
 
-<div class="banner mt-5 animated wow fadeInUp">
-    <h2 class="text-center">Un CMS grand public pour des sites à grandes audiences !</h2>
-    <img class="img-banner mt-5" src="../../assets/website-analysis.png" alt="">
-    <p class="text-justify mt-3">SEO est l'acronyme de Search Engine Optimization et peut être défini comme l'art de positionner un site, 
-        une page web ou une application dans les premiers résultats naturels des moteurs de recherche. 
-        En français, le SEO est désigné par le terme de référencement naturel. Avec My Best CMS, nous vous garantissons un bon positionnement
-        en moins de 3 mois d'activité.</p>
+<div class="row w-100 mx-auto">
+    <div class="col-md">
+        <div class="banner mt-5 animated wow fadeInUp">
+            <h2 class="text-center">Un CMS grand public pour des sites à grandes audiences !</h2>
+            <img class="img-banner mt-5" src="../../assets/website-analysis.png" alt="">
+            <p class="text-justify mt-3">SEO est l'acronyme de Search Engine Optimization et peut être défini comme l'art de positionner un site, 
+                une page web ou une application dans les premiers résultats naturels des moteurs de recherche. 
+                En français, le SEO est désigné par le terme de référencement naturel. Avec My Best CMS, nous vous garantissons un bon positionnement
+                en moins de 3 mois d'activité.</p>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="banner mt-5 animated wow fadeInUp">
+            <h2 class="text-center">Une utilisation hors-connexion</h2>
+            <img class="img-banner mt-4" src="../../assets/pwa-reliable.png" alt="">
+            <p class="text-justify mt-3">Grâce aux nouvelles technologies du web, nous vous offrons la possiblité de modifier votre site même sans connexion internet
+                sur smartphone, mais aussi sur ordinateur. Ajouter une navigation, des articles, des plugins, etc...<br>
+                Plus de possibilité de perdre ses changements si vous avez perdu votre connection. Que du bonheur non ?
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="large-banner mt-5 animated wow fadeInUp">
+    <h2 class="text-center">Le premier CMS pensé d'abord pour mobile</h2>
+    <img class="img-banner mt-4" src="../../assets/power-mobile.png" alt="">
+    <p class="text-justify mt-3">Parce que le monde d'aujourd'hui passe la plus part de son temps sur téléphone, il était donc impensable que nous
+        ne facilitons pas votre demande en ne vous proposant pas un CMS utilisable sur mobile. De plus, il est extrêment léger. Nos développeurs ont fait en sorte
+        que l'application web, une fois installé ne pèse pas plus de 20Mo ! Cela vous laisse donc toute la place pour garder vos jeux préférer sur
+        votre téléphone !
+    </p>
 </div>
 
 <div class="banner mt-5 animated wow fadeInUp">
-    <h2 class="text-center">Une utilisation hors-connexion</h2>
-    <img class="img-banner mt-4" src="../../assets/pwa-reliable.png" alt="">
-    <p class="text-justify mt-3">Grâce aux nouvelles technologies du web, nous vous offrons la possiblité de modifier votre site même sans connexion internet
-        sur smartphone, mais aussi sur ordinateur. Ajouter une navigation, des articles, des plugins, etc...<br>
-        Plus de possibilité de perdre ses changements si vous avez perdu votre connection. Que du bonheur non ?
-    </p>
+    <h2 class="text-center">Et c'est gratuit !</h2>
+    <i id="icon" class="fa fa-gift mt-3" style="text-shadow: rgb(59, 69, 165) 0px 0px 0px, rgb(60, 70, 167) 1px 1px 0px, rgb(60, 71, 169) 2px 2px 0px, rgb(61, 72, 171) 3px 3px 0px, rgb(62, 73, 173) 4px 4px 0px, rgb(62, 74, 175) 5px 5px 0px, rgb(63, 74, 177) 6px 6px 0px, rgb(64, 75, 179) 7px 7px 0px, rgb(65, 76, 181) 8px 8px 0px, rgb(65, 77, 183) 9px 9px 0px, rgb(66, 78, 185) 10px 10px 0px, rgb(67, 79, 187) 11px 11px 0px, rgb(67, 79, 189) 12px 12px 0px, rgb(68, 80, 191) 13px 13px 0px, rgb(69, 81, 193) 14px 14px 0px, rgb(70, 82, 195) 15px 15px 0px, rgb(70, 83, 197) 16px 16px 0px, rgb(71, 84, 199) 17px 17px 0px, rgb(72, 85, 201) 18px 18px 0px, rgb(72, 85, 203) 19px 19px 0px, rgb(73, 86, 205) 20px 20px 0px, rgb(74, 87, 207) 21px 21px 0px, rgb(75, 88, 209) 22px 22px 0px, rgb(75, 89, 211) 23px 23px 0px, rgb(76, 90, 213) 24px 24px 0px, rgb(77, 91, 215) 25px 25px 0px, rgb(78, 91, 217) 26px 26px 0px, rgb(78, 92, 219) 27px 27px 0px, rgb(79, 93, 221) 28px 28px 0px, rgb(80, 94, 223) 29px 29px 0px, rgb(80, 95, 225) 30px 30px 0px, rgb(81, 96, 227) 31px 31px 0px, rgb(82, 96, 229) 32px 32px 0px, rgb(83, 97, 231) 33px 33px 0px, rgb(83, 98, 233) 34px 34px 0px; font-size: 162px; color: rgb(255, 255, 255); height: 259px; width: 259px; line-height: 259px; border-radius: 50%; text-align: center; background-color: rgb(84, 99, 235);"></i>       
+</div>
+
+<div class="engagement mt-5 animated wow fadeInUp">
+    <h2 class="mt-5 mb-3">Quand est-ce qu'on commence ?</h2>
+    <button type="button" class="btn btn-lg deep-purple darken-2 waves-light" [disabled]="isAuth" mdbWavesEffect (click)="onSignin()">Connection</button>
+    <button type="button" class="btn btn-lg deep-purple darken-2 waves-light" [disabled]="isAuth" mdbWavesEffect (click)="onSignup()">Inscription</button>
 </div>

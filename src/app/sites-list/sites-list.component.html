@@ -1,20 +1,32 @@
 <app-jumbotron [title]=title [subtitle]=subtitle></app-jumbotron>
 
 <div class="container my-4">
-    <h4 class="text-center m-4" *ngIf="sites.length === 0">Vous n'avez actuellement aucun site, veuillez en créer un d'abord</h4>
-    <div class="d-flex justify-content-center w-100">
+    <h4 class="text-center m-4 animated fadeInUp" *ngIf="sites.length === 0">Vous n'avez actuellement aucun site, veuillez en créer un d'abord</h4>
+    <div class="d-flex justify-content-center w-100 animated fadeInUp">
         <button class="btn btn-primary w-25" *ngIf="sites.length === 0" (click)="onNewSite()"><i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
-    <div class="md-form input-group search-site mx-auto my-5" *ngIf="sites.length > 0">
+    <div class="md-form input-group search-site mx-auto my-5 animated fadeInUp" *ngIf="sites.length > 0">
         <input type="search" class="form-control" placeholder="Search for...">
         <div class="input-group-btn">
             <button class="btn btn-primary waves-light" type="button" mdbWavesEffect><i class="fa fa-search" aria-hidden="true"></i></button>
             <button class="btn btn-primary" (click)="onNewSite()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-            <button class="btn btn-primary" (click)="onNewSite()"><i class="fa fa-filter" aria-hidden="true"></i></button>
+            
+            <div class="btn-group" dropdown>
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle waves-light" mdbWavesEffect>
+                    <i class="fa fa-filter" aria-hidden="true"></i>
+                </button>
+            
+                <div class="dropdown-menu dropdown-primary dropdown-menu-right">
+                    <a class="dropdown-item">Par titre</a>
+                    <a class="dropdown-item">Par auteur</a>
+                    <a class="dropdown-item">Par dernière modification</a>
+                </div>
+            </div>
+            
         </div>
     </div>
     <div class="site-list">
-        <div    class="card m-3"
+        <div    class="card m-3 animated fadeInUp"
         style="max-width: 400px; width: 92%"
                 *ngFor="let site of sites; let i = index">
             <div class="card-header deep-purple darken-2 text-white">{{ site.author }}</div>
@@ -24,13 +36,11 @@
             </div>
             
             <div class="card-footer d-flex">
-                <button class="btn btn-sm btn-danger" (click)="onDeleteSite(site)">
-                    <i class="fa fa-remove mr-2" aria-hidden="true"></i>
-                    Supprimer
+                <button class="btn btn-danger" (click)="onDeleteSite(site)">
+                    <i class="fa fa-remove" aria-hidden="true"></i>
                 </button>
-                <button class="btn btn-sm btn-primary" (click)="onViewSite(i)">
-                    <i class="fa fa-eye mr-2" aria-hidden="true"></i>
-                    Aperçu
+                <button class="btn btn-primary" (click)="onViewSite(i)">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
                 </button>
             </div>
         </div>

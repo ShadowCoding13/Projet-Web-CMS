@@ -1,15 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
+.container-nav {
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
 .navbar {
+    position: relative;
+    margin: auto;
+    top: 0;
+    width: 700px;
+    max-width: 100%;
     z-index: 2;
     background-color: transparent;
 }
 .top-nav-collapse {
-    background-color: rgb(71, 49, 170);
+    background-color: #5a32a0;
 }
 
 @media screen and (max-width: 768px) {
     .navbar {
-        background-color: rgb(71, 49, 170);
+        background-color: #5a32a0;
     }
 }

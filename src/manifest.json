@@ -1,0 +1,12 @@
+{
+    "short_name": "My Best CMS",
+    "name": "My Best CMS",
+    "start_url": "/",
+
+    "theme_color": "#3300ff",
+    "background_color": "#ffffff",
+
+    "display": "standalone",
+    "orientation": "portrait"
+
+  }
