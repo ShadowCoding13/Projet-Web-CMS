@@ -1,0 +1,38 @@
+<app-jumbotron [title]=title [subtitle]=subtitle></app-jumbotron>
+
+<div class="container my-4">
+    <h4 class="text-center m-4" *ngIf="sites.length === 0">Vous n'avez actuellement aucun site, veuillez en créer un d'abord</h4>
+    <div class="d-flex justify-content-center w-100">
+        <button class="btn btn-primary w-25" *ngIf="sites.length === 0" (click)="onNewSite()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    </div>
+    <div class="md-form input-group search-site mx-auto my-5" *ngIf="sites.length > 0">
+        <input type="search" class="form-control" placeholder="Search for...">
+        <div class="input-group-btn">
+            <button class="btn btn-primary waves-light" type="button" mdbWavesEffect><i class="fa fa-search" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" (click)="onNewSite()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" (click)="onNewSite()"><i class="fa fa-filter" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="site-list">
+        <div    class="card m-3"
+        style="max-width: 400px; width: 92%"
+                *ngFor="let site of sites; let i = index">
+            <div class="card-header deep-purple darken-2 text-white">{{ site.author }}</div>
+            <div class="card-body">
+                <h2 class="card-title">{{ site.title }}</h2>
+                <p class="card-text">{{ site.description }}</p>
+            </div>
+            
+            <div class="card-footer d-flex">
+                <button class="btn btn-sm btn-danger" (click)="onDeleteSite(site)">
+                    <i class="fa fa-remove mr-2" aria-hidden="true"></i>
+                    Supprimer
+                </button>
+                <button class="btn btn-sm btn-primary" (click)="onViewSite(i)">
+                    <i class="fa fa-eye mr-2" aria-hidden="true"></i>
+                    Aperçu
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

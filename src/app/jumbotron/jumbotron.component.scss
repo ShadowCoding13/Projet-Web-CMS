@@ -1,0 +1,13 @@
+.view {
+    background: url("../../assets/background.jpg")no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 70vh;
+    margin-top: -56px;
+}
+
+@media screen and (min-width: 768px) {
+    .view {
+        overflow: visible;
+    }
+}

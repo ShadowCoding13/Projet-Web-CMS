@@ -1,0 +1,30 @@
+<app-jumbotron [title]=title [subtitle]=subtitle></app-jumbotron>
+
+<div class="card signin-card my-5 animated wow fadeInUp">
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="card-body">
+    <h2 class="card-title">Se connecter</h2>
+    <div class="md-form">
+      <input type="email"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              data-error="Ceci n'est pas un mail valide" data-success="Ceci est un mail valide"
+              mdbInputDirective>
+      <label for="email">Adresse mail</label>
+    </div>
+    <div class="md-form">
+      <input type="password"
+              id="password"
+              class="form-control"
+              formControlName="password"
+              [mdbValidate]="false"
+              mdbInputDirective>
+      <label for="password">Mot de passe</label>
+    </div>
+    <button class="btn deep-purple darken-2 mx-auto mt-3"
+            type="submit"
+            mdbWavesEffect 
+            [disabled]="signinForm.invalid">Se connecter</button>
+  </form>
+  <p class="text-danger mx-4">{{ errorMessage }}</p>
+</div>

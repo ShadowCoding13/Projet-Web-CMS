@@ -1,0 +1,39 @@
+<app-jumbotron [title]=title [subtitle]=subtitle></app-jumbotron>
+
+<div class="card new-site-card my-5 animated wow fadeInLeft">
+  <form [formGroup]="siteForm" (ngSubmit)="onSaveSite()" class="card-body">
+    <h2>Enregistrer un nouveau site</h2>
+    <div class="md-form">
+      <label for="title">Titre</label>
+      <input type="text" 
+              id="title"
+              class="form-control" 
+              formControlName="title"
+              [mdbValidate]=false
+              mdbInputDirective>
+    </div>
+    <div class="md-form">
+      <label for="author">Auteur</label>
+      <input type="text" 
+              id="author"
+              class="form-control" 
+              formControlName="author"
+              [mdbValidate]=false
+              mdbInputDirective>
+    </div>
+    <div class="md-form">
+      <label for="description">Description</label>
+      <input type="text" 
+              id="description"
+              class="form-control" 
+              formControlName="description"
+              [mdbValidate]=false
+              mdbInputDirective>
+    </div>
+    <button class="btn btn-success mx-auto mt-3" 
+            [disabled]="siteForm.invalid"
+            type="submit">Enregistrer
+    </button>
+
+  </form>
+</div>
