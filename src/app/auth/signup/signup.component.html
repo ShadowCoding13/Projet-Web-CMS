@@ -4,10 +4,31 @@
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="card-body">
     <h2 class="card-title">Créer un compte</h2>
     <div class="md-form">
+      <input type="text"
+              id="firstname"
+              class="form-control"
+              formControlName="firstname"
+              autocomplete="name"
+              [mdbValidate]="false"
+              mdbInputDirective>
+      <label for="firstname">Prénom</label>
+    </div>
+    <div class="md-form">
+      <input type="text"
+              id="lastname"
+              class="form-control"
+              formControlName="lastname"
+              autocomplete="family-name"
+              [mdbValidate]="false"
+              mdbInputDirective>
+      <label for="firstname">Nom</label>
+    </div>
+    <div class="md-form">
       <input type="email"
               id="email"
               class="form-control"
               formControlName="email"
+              autocomplete="email"
               data-error="Ceci n'est pas un mail valide" data-success="Ceci est un mail valide"
               mdbInputDirective>
       <label for="email">Adresse mail</label>
@@ -17,6 +38,7 @@
               id="password"
               class="form-control"
               formControlName="password"
+              autocomplete="new-password"
               data-error="Ceci n'est pas un mot de passe valide" data-success="Ceci est un mot de passe valide"
               mdbInputDirective>
       <label for="password">Mot de passe</label>

@@ -22,21 +22,16 @@ interface Comment {
     like: number
 }
 
+
 export class Site {
-    id: string;
-    background: string;
-    navigation: [
-                'Accueil',
-                'A propos',
-                'Blog',
-                'Contact'
-                ];
-    accueil: {
+
+    public background: string;
+    public accueil: {
         title: string,
         subtitle: string,
         illustration: string,
-    }
-    about: {
+    };
+    public about: {
         illustration: string,
         description: string,
         categorie: string,
@@ -45,12 +40,12 @@ export class Site {
         storyAuthor: string,
         goal: string,
         activate: boolean
-    }
-    blog: {
+    };
+    public blog: {
         lastUpdate: Date,
         articles: Article[]
-    }
-    contact: {
+    };
+    public contact: {
         illustration: string,
         tel: number,
         mail: string,
@@ -61,6 +56,7 @@ export class Site {
     constructor(
         public title: string, 
         public author: string,
-        public description: string
+        public description: string,
+        public navigation?: string[],
     ) {}
 }

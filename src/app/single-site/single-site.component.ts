@@ -11,7 +11,7 @@ import { SitesService } from '../services/sites.service';
 export class SingleSiteComponent implements OnInit {
 
   title: string;
-  subtitle: string = "Aperçu public de mon site";
+  subtitle: string = "Edition de mon site";
 
   site: Site;
 
@@ -27,6 +27,10 @@ export class SingleSiteComponent implements OnInit {
         this.title = site.title
       }
     );
+  }
+
+  getUrl(site){
+    return site.toLowerCase().replace(/ /g, '-');
   }
 
   onBack() {

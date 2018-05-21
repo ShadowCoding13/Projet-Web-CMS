@@ -31,6 +31,10 @@ export class SigninComponent implements OnInit {
     });
   }
 
+  onMissingPassword(){
+    this.router.navigate(['/auth/missing-password']);
+  }
+
   onSubmit() {
     const email = this.signinForm.get('email').value;
     const password = this.signinForm.get('password').value;

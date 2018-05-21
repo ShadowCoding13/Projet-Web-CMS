@@ -25,6 +25,10 @@
             type="submit"
             mdbWavesEffect 
             [disabled]="signinForm.invalid">Se connecter</button>
+    <button class="btn btn-outline-secondary mx-auto mt-3"
+            type="button"
+            mdbWavesEffect 
+            (click)="onMissingPassword()">Mot de passe oublié</button>
   </form>
   <p class="text-danger mx-4">{{ errorMessage }}</p>
 </div>

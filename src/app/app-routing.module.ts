@@ -8,17 +8,22 @@ import { SitesListComponent } from './sites-list/sites-list.component';
 import { HomeComponent } from './home/home.component';
 import { SingleSiteComponent } from './single-site/single-site.component';
 import { SiteFormComponent } from './site-form/site-form.component';
+import { MissingPasswordComponent } from './auth/missing-password/missing-password.component';
+import { PublicSiteComponent } from './public-site/public-site.component';
+import { SiteGuard } from './guards/site.guard';
 
 const routes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'auth/signin', component: SigninComponent },
   { path: 'auth/my-account', canActivate: [AuthGuard], component: MyAccountComponent },
+  { path: 'auth/missing-password', component: MissingPasswordComponent },
   { path: 'sites', canActivate: [AuthGuard], component: SitesListComponent },
   { path: 'sites/new', canActivate: [AuthGuard], component: SiteFormComponent },
   { path: 'sites/view/:id', canActivate: [AuthGuard], component: SingleSiteComponent },
   { path: 'home', component: HomeComponent},
+  { path: 'public/:site', canActivate: [SiteGuard], component: PublicSiteComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

@@ -14,11 +14,38 @@ export class SitesService {
   }
 
   saveSites() {
-    firebase.database().ref(`users/${firebase.auth().currentUser.uid}/sites`).set(this.sites);
+    firebase.database().ref(`sites/${firebase.auth().currentUser.uid}`).set(this.sites);
   }
 
   getSites() {
-    firebase.database().ref(`users/${firebase.auth().currentUser.uid}/sites`)
+    firebase.database().ref(`sites/${firebase.auth().currentUser.uid}`)
+      .on('value', (data : firebase.database.DataSnapshot) => {
+          this.sites = data.val() ? data.val() : [];
+          this.emitSites();
+        }
+      );
+  }
+
+  getSitesOrderByTitle() {
+    firebase.database().ref(`sites/${firebase.auth().currentUser.uid}`).orderByChild('title')
+      .on('value', (data : firebase.database.DataSnapshot) => {
+          this.sites = data.val() ? data.val() : [];
+          this.emitSites();
+        }
+      );
+  }
+
+  getSitesOrderByAuthor() {
+    firebase.database().ref(`sites/${firebase.auth().currentUser.uid}`).orderByChild('author')
+      .on('value', (data : firebase.database.DataSnapshot) => {
+          this.sites = data.val() ? data.val() : [];
+          this.emitSites();
+        }
+      );
+  }
+
+  getSitesOrderByQuery(query: string) {
+    firebase.database().ref(`sites/${firebase.auth().currentUser.uid}`).startAt(query)
       .on('value', (data : firebase.database.DataSnapshot) => {
           this.sites = data.val() ? data.val() : [];
           this.emitSites();
@@ -29,7 +56,7 @@ export class SitesService {
   getSingleSite(id: number) {
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref(`users/${firebase.auth().currentUser.uid}/sites/` + id).once('value').then(
+        firebase.database().ref(`sites/${firebase.auth().currentUser.uid}/` + id).once('value').then(
           (data) => {
             resolve(data.val());
           }, (error) => {
@@ -40,7 +67,14 @@ export class SitesService {
     );
   }
 
-  createNewSite(newSite: Site) {
+  createNewSite(data: Site) {
+    const newSite : Site = data;
+    newSite.navigation = [
+      'Accueil',
+      'A propos',
+      'Blog',
+      'Contact'
+    ];
     this.sites.push(newSite);
     this.saveSites();
     this.emitSites();

@@ -24,6 +24,9 @@ import { SingleSiteComponent } from './single-site/single-site.component';
 import { SiteFormComponent } from './site-form/site-form.component';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { SitesService } from './services/sites.service';
+import { MissingPasswordComponent } from './auth/missing-password/missing-password.component';
+import { PublicSiteComponent } from './public-site/public-site.component';
+import { SiteGuard } from './guards/site.guard';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import { SitesService } from './services/sites.service';
     SingleSiteComponent,
     JumbotronComponent,
     SiteFormComponent,
+    MissingPasswordComponent,
+    PublicSiteComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,7 @@ import { SitesService } from './services/sites.service';
     MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [AuthService, AuthGuard, SitesService],
+  providers: [AuthService, AuthGuard, SitesService, SiteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

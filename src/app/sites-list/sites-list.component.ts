@@ -41,6 +41,16 @@ export class SitesListComponent implements OnInit, OnDestroy {
   onViewSite(id: number) {
     this.router.navigate(['/sites', 'view', id]);
   }
+
+  onOrderByTitle(){
+    this.sitesService.getSitesOrderByTitle();
+    this.sitesService.emitSites();
+  }
+
+  onOrderByAuthor(){
+    this.sitesService.getSitesOrderByAuthor();
+    this.sitesService.emitSites();
+  }
   
   ngOnDestroy() {
     this.sitesSubscription.unsubscribe();
