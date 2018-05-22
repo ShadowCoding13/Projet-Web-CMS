@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as firebase from 'firebase';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,10 @@ import * as firebase from 'firebase';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor() {
+
+  public url;
+
+  constructor(public route: Router) {
     const config = {
       apiKey: "AIzaSyA-ukB7GURuvywDyyJmkXoHJC_q-UDfpYM",
       authDomain: "my-best-cms.firebaseapp.com",
@@ -18,4 +22,5 @@ export class AppComponent {
     };
     firebase.initializeApp(config);
   }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Site } from '../models/site.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SitesService } from '../services/sites.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-single-site',
@@ -14,12 +15,14 @@ export class SingleSiteComponent implements OnInit {
   subtitle: string = "Edition de mon site";
 
   site: Site;
+  siteSubscription: Subscription;
+  url;
 
   constructor(private route: ActivatedRoute, private sitesService: SitesService,
               private router: Router) {}
 
   ngOnInit() {
-    this.site = new Site('', '', '');
+    this.site = new Site(null, null, null, null, null, null, null);
     const id = this.route.snapshot.params['id'];
     this.sitesService.getSingleSite(+id).then(
       (site: Site) => {
@@ -27,13 +30,11 @@ export class SingleSiteComponent implements OnInit {
         this.title = site.title
       }
     );
-  }
-
-  getUrl(site){
-    return site.toLowerCase().replace(/ /g, '-');
+    this.url = this.router.url
   }
 
   onBack() {
     this.router.navigate(['/sites']);
   }
+    
 }

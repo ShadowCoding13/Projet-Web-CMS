@@ -13,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { AuthService } from './services/auth.service';
+import { AgmCoreModule } from '@agm/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
@@ -26,7 +27,13 @@ import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { SitesService } from './services/sites.service';
 import { MissingPasswordComponent } from './auth/missing-password/missing-password.component';
 import { PublicSiteComponent } from './public-site/public-site.component';
-import { SiteGuard } from './guards/site.guard';
+import { DefaultHomeComponent } from './single-site/template/default/default-home/default-home.component';
+import { DefaultAboutComponent } from './single-site/template/default/default-about/default-about.component';
+import { DefaultBlogComponent } from './single-site/template/default/default-blog/default-blog.component';
+import { DefaultContactComponent } from './single-site/template/default/default-contact/default-contact.component';
+import { DefaultElementComponent } from './single-site/template/default/default-element/default-element.component';
+import { DefaultFooterComponent } from './single-site/template/default/default-footer/default-footer.component';
+import { DefaultHeaderComponent } from './single-site/template/default/default-header/default-header.component';
 
 @NgModule({
   declarations: [
@@ -44,18 +51,28 @@ import { SiteGuard } from './guards/site.guard';
     SiteFormComponent,
     MissingPasswordComponent,
     PublicSiteComponent,
+    DefaultHomeComponent,
+    DefaultAboutComponent,
+    DefaultBlogComponent,
+    DefaultContactComponent,
+    DefaultElementComponent,
+    DefaultFooterComponent,
+    DefaultHeaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCvg7KpaAKjbSbW1q3rOYOA_sTwSJgfDTY'
+    }),
     ReactiveFormsModule,
     HttpClientModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [AuthService, AuthGuard, SitesService, SiteGuard],
+  providers: [AuthService, AuthGuard, SitesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,35 @@
+<!--Section: A propos-->
+<section class="py-4 text-center text-lg-left">
+
+    <!--Section heading-->
+    <h2 class="mb-5 pt-4">A Propos</h2>
+    <!--Section description-->
+    <p class="mb-5 pb-3 text-justify text-to-edit">{{ site.about.content }}</p>
+
+    <!-- Section Objectif -->
+    <div class="row">
+      <div class="col-md">
+        <h3 class="my-3">Objectifs</h3>
+        <p class="text-justify text-to-edit">{{ site.about.goal }}</p>
+      </div>
+      <div class="col-md text-center">
+        <img *ngIf="site.about.illustration" [src]="site.about.illustration" class="img-fluid">
+        <button class="btn btn-primary add">Ajouter une image</button>
+      </div>
+    </div>
+
+    <!-- Section Story -->
+    <div class="row mt-5">
+      <div class="col-md text-center">
+        <img *ngIf="site.about.illustration" [src]="site.about.photoAuthor" class="img-fluid">
+        <button class="btn btn-primary add">Ajouter une image</button>
+      </div>
+      <div class="col-md">
+        <h3 class="my-3">Mon Histoire</h3>
+        <p class="text-justify text-to-edit">{{ site.about.storyAuthor }}</p>
+      </div>
+    </div>
+    
+    <hr>
+</section>
+<!--Section: Accueil-->

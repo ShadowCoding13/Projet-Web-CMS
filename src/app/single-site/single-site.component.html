@@ -1,94 +1,59 @@
 <app-jumbotron [title]=title [subtitle]=subtitle></app-jumbotron>
 
 <div class="row container-fluid mx-auto my-5">
+    <!-- Ajout de contenu et design -->
     <div class="col-md-2">
-        <h3 class="card-header deep-purple darken-2 white-text">Contenu</h3>
+        <!-- Contenu -->
+        <div>
+            <h3 class="card-header deep-purple darken-2 white-text">Contenu</h3>
+
+            <button class="btn btn-primary btn-block">
+                Text
+            </button>
+            <button class="btn btn-primary btn-block">
+                Image
+            </button>
+            <button class="btn btn-secondary btn-block">
+                Page
+            </button>
+            <button class="btn btn-primary btn-block">
+                Article
+            </button>
+        </div>
+        <!-- Design -->
+        <div>
+            <h3 class="card-header deep-purple darken-2 white-text mt-5">Design</h3>
+
+            <button class="btn btn-primary btn-block">
+                Thème
+            </button>
+            <button class="btn btn-primary btn-block">
+                Template
+            </button>
+        </div>
     </div>
-    <div class="col-md-8 card demo indigo lighten-5">
+    <!-- Démo du site -->
+    <div class="col-md-10 card demo">
 
         <h3 class="card-header deep-purple darken-2 white-text">Aperçu</h3>
 
         <!-- Header -->
-        <header>
-            <!--Navbar-->
-            <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo w-100">    
-                <!-- Navbar brand -->
-                <logo><a class="navbar-brand" href="#">{{ site.title }}</a></logo>
-                <!-- Collapsible content -->
-                <links>
-                    <!-- Links -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item" *ngFor="let navigation of site.navigation; let i =index">
-                            <a class="nav-link waves-light" [href]="'#' + i" mdbWavesEffect>{{ navigation }}</a>
-                        </li>
-                    </ul>
-                    <!-- Links -->
-                </links>
-                <!-- Collapsible content -->
-            </mdb-navbar>
-            <!--/.Navbar-->
-        
-            <!-- Jumbotron -->
-            <div class="jumbotron text-center linear-blue">
-                <h1 class="h1-responsive">{{ site.title }}</h1>
-                <p class="lead">{{ site.author }}</p>
-                <hr class="my-2">
-                <p>{{ site.description }}</p>
-                <a class="btn btn-primary btn-lg waves-light" role="button" mdbWavesEffect>Contactez nous !</a>
-            </div>
-        </header>
+        <app-default-header [site]="site" [url]="url"></app-default-header>
         
         <!-- Main -->
         <main class="container">
-            <section *ngFor="let navigation of site.navigation; let i = index" [id]="i" class="card">
-                <h2>{{ navigation }}</h2>
+            <section *ngFor="let navigation of site.navigation; let i = index" [id]="i">
+                <app-default-home [site]="site" *ngIf="navigation === 'Accueil'"></app-default-home>
+                <app-default-about [site]="site" *ngIf="navigation === 'A propos'"></app-default-about>
+                <app-default-blog [site]="site" *ngIf="navigation === 'Blog'"></app-default-blog>
+                <app-default-contact [site]="site" *ngIf="navigation === 'Contact'"></app-default-contact>
             </section>
         </main>
 
-        <!--Footer-->
-        <footer class="page-footer indigo pt-4 mt-4">
-
-            <!--Footer Links-->
-            <div class="container-fluid text-center text-md-left">
-                <div class="row">
-
-                    <!--First column-->
-                    <div class="col-md-6">
-                        <h5 class="title">{{ site.title }}</h5>
-                        <p>{{ site.description }}</p>
-                    </div>
-                    <!--/.First column-->
-
-                    <!--Second column-->
-                    <div class="col-md-6">
-                        <h5 class="title">Liens</h5>
-                        <ul class="list-unstyled">
-                            <li *ngFor="let navigation of site.navigation; let i = index">
-                                <a [href]="'#' + i">{{ navigation }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--/.Second column-->
-                </div>
-            </div>
-            <!--/.Footer Links-->
-
-            <!--Copyright-->
-            <div class="footer-copyright text-center py-3">
-                <div class="container-fluid">
-                    © 2018 Copyright: <a [href]="'https://www.' + getUrl(site.title) + '.my-best-cms.com'"> {{ site.title }} </a>
-                </div>
-            </div>
-            <!--/.Copyright-->
-        </footer>
-        <!--/.Footer-->
+        <!-- Footer -->
+        <app-default-footer [site]="site"></app-default-footer>
                             
     </div>
-    <div class="col-md-2">
-        <h3 class="card-header deep-purple darken-2 white-text">Design</h3>
-    </div>
 </div>
-
-
 
 <button class="btn btn-default back" (click)="onBack()">Retour</button>

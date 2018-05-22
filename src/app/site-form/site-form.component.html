@@ -30,6 +30,52 @@
               [mdbValidate]=false
               mdbInputDirective>
     </div>
+    <div class="md-form">
+      <label for="tel">Téléphone</label>
+      <input type="tel" 
+              id="tel"
+              class="form-control" 
+              formControlName="tel"
+              [mdbValidate]=false
+              mdbInputDirective>
+    </div>
+    <div class="md-form">
+      <label for="mail">Email</label>
+      <input type="email" 
+              id="mail"
+              class="form-control" 
+              formControlName="mail"
+              [mdbValidate]=false
+              mdbInputDirective>
+    </div>
+    <h3>Adresse</h3>
+    <div class="md-form">
+      <label for="city">Ville</label>
+      <input type="text" 
+              id="city"
+              class="form-control" 
+              formControlName="city"
+              [mdbValidate]=false
+              mdbInputDirective>
+    </div>
+    <div class="md-form">
+      <label for="firstLign">Première ligne</label>
+      <input type="text" 
+              id="firstLign"
+              class="form-control" 
+              formControlName="firstLign"
+              [mdbValidate]=false
+              mdbInputDirective>
+    </div>
+    <div class="md-form">
+      <label for="secondLign">Deuxième ligne</label>
+      <input type="text" 
+              id="secondLign"
+              class="form-control" 
+              formControlName="secondLign"
+              [mdbValidate]=false
+              mdbInputDirective>
+    </div>
     <button class="btn btn-success mx-auto mt-3" 
             [disabled]="siteForm.invalid"
             type="submit">Enregistrer

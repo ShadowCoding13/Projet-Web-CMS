@@ -67,6 +67,20 @@ export class SitesService {
     );
   }
 
+  getPublicSite(reference: string){
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref(`sites/${reference}`).once('value').then(
+          (data) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
   createNewSite(data: Site) {
     const newSite : Site = data;
     newSite.navigation = [

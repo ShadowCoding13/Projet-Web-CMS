@@ -10,7 +10,6 @@ import { SingleSiteComponent } from './single-site/single-site.component';
 import { SiteFormComponent } from './site-form/site-form.component';
 import { MissingPasswordComponent } from './auth/missing-password/missing-password.component';
 import { PublicSiteComponent } from './public-site/public-site.component';
-import { SiteGuard } from './guards/site.guard';
 
 const routes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -21,7 +20,7 @@ const routes: Routes = [
   { path: 'sites/new', canActivate: [AuthGuard], component: SiteFormComponent },
   { path: 'sites/view/:id', canActivate: [AuthGuard], component: SingleSiteComponent },
   { path: 'home', component: HomeComponent},
-  { path: 'public/:site', canActivate: [SiteGuard], component: PublicSiteComponent},
+  { path: 'public/:author/:site', component: PublicSiteComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home'}
 ];

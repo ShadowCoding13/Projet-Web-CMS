@@ -1,0 +1,24 @@
+.add {
+    width: 100%;
+    height: 100%
+}
+
+.text-to-edit {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 0px;
+    border-radius: 0px;
+    background: transparent;
+    font-weight: 300;
+    padding: 0px;
+    color: black;
+    transition: 0.4s;
+    transition-timing-function: ease;
+}
+
+.text-to-edit:hover {
+    cursor: pointer;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+    padding: 5px;
+    border-radius: 3px;
+    background: #4285F4;
+}
