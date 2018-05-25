@@ -3,6 +3,9 @@ import { Site } from '../models/site.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SitesService } from '../services/sites.service';
 import { Subscription } from 'rxjs/Subscription';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UploadService } from '../services/upload.service';
+import { Upload } from '../models/upload.model';
 
 @Component({
   selector: 'app-single-site',
@@ -15,14 +18,16 @@ export class SingleSiteComponent implements OnInit {
   subtitle: string = "Edition de mon site";
 
   site: Site;
-  siteSubscription: Subscription;
   url;
 
-  constructor(private route: ActivatedRoute, private sitesService: SitesService,
-              private router: Router) {}
+  constructor(private route: ActivatedRoute, 
+              private sitesService: SitesService,
+              private uploadService: UploadService,
+              private router: Router,
+              private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.site = new Site(null, null, null, null, null, null, null);
+    this.site = new Site(null, null, null, null, null, null, null, null);
     const id = this.route.snapshot.params['id'];
     this.sitesService.getSingleSite(+id).then(
       (site: Site) => {
@@ -30,11 +35,15 @@ export class SingleSiteComponent implements OnInit {
         this.title = site.title
       }
     );
-    this.url = this.router.url
+    this.url = this.router.url;
   }
 
   onBack() {
     this.router.navigate(['/sites']);
+  }
+
+  onDeleteSite(site: Site) {
+    this.sitesService.removeSite(site);
   }
     
 }

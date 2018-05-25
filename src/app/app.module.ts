@@ -34,6 +34,8 @@ import { DefaultContactComponent } from './single-site/template/default/default-
 import { DefaultElementComponent } from './single-site/template/default/default-element/default-element.component';
 import { DefaultFooterComponent } from './single-site/template/default/default-footer/default-footer.component';
 import { DefaultHeaderComponent } from './single-site/template/default/default-header/default-header.component';
+import { UploadService } from './services/upload.service';
+import { GeocodingService } from './services/geocoding.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,7 @@ import { DefaultHeaderComponent } from './single-site/template/default/default-h
     AppRoutingModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCvg7KpaAKjbSbW1q3rOYOA_sTwSJgfDTY'
+      apiKey: 'AIzaSyCvg7KpaAKjbSbW1q3rOYOA_sTwSJgfDTY',
     }),
     ReactiveFormsModule,
     HttpClientModule,
@@ -72,7 +74,7 @@ import { DefaultHeaderComponent } from './single-site/template/default/default-h
     MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [AuthService, AuthGuard, SitesService],
+  providers: [AuthService, AuthGuard, SitesService, UploadService, GeocodingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

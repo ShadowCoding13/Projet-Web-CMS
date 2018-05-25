@@ -3,23 +3,21 @@
 <section class="py-4 text-center text-lg-left">
 
     <!--Section heading-->
-    <h2 class="mb-5 pt-4">Blog</h2>
-    <!--Section description-->
-    <p class="mb-5 pb-3" *ngIf="site.blog">Dernière mise à jour : {{ site.blog.lastUpdate }}</p>
+    <h2 class="mb-5 pt-4">
+        Blog
+        <button class="btn btn-primary" (click)="addArticle.show()">Ajouter un article</button>
+    </h2>
 
     <!--Post row-->
     <div *ngIf="site.blog">
-      <article class="row" *ngFor="let article of site.blog.articles">
+      <article class="row my-5" *ngFor="let article of site.blog.articles">
 
         <!--Grid column-->
         <div class="col-lg-5 col-xl-5 pb-3">
             <!--Featured image-->
-            <div class="view overlay rounded z-depth-2 waves-light" mdbWavesEffect>
+            <div class="view overlay rounded z-depth-2">
                 <img [src]="article.illustration"
                     class="img-fluid">
-                <a>
-                    <div class="mask rgba-white-slight"></div>
-                </a>
             </div>
         </div>
         <!--Grid column-->
@@ -35,10 +33,72 @@
                 <strong>{{ article.title }}</strong>
             </h3>
             <p>{{ article.content }}</p>
-            <p>{{ article.createdAt}}</p>
-            <p *ngIf="article.updatedAt">{{ article.updatedAt }}</p>
+            <button class="btn btn-danger" (click)="onDeleteArticle(article)">Supprimer article</button>
+            <button class="btn btn-warning" (click)="editArticle.show()">Modifier l'article</button>
         </div>
         <!--Grid column-->
+
+        <!--Modal: Article From-->
+        <div mdbModal #editArticle="mdb-modal" class="modal fade" id="editArticle" tabindex="-1" role="dialog" aria-labelledby="editArticle" aria-hidden="true">
+            <div class="modal-dialog cascading-modal" role="document">
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Header-->
+                    <div class="modal-header deep-purple darken-2 white-text">
+                        <h4 class="title"><i class="fa fa-newspaper-o"></i> Editer un article</h4>
+                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="editArticle.hide()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body mb-0">
+
+                        <form [formGroup]="editArticleForm" (ngSubmit)="onEditArticle(article)" class="card-body">
+                            <div class="md-form">
+                            <input type="text"
+                                    id="title"
+                                    class="form-control"
+                                    formControlName="title"
+                                    [mdbValidate]="false"
+                                    [value]="article.title"
+                                    mdbInputDirective>
+                            <label for="title">Titre</label>
+                            </div>
+                            <div class="md-form">
+                                <input type="text"
+                                        id="categorie"
+                                        class="form-control"
+                                        formControlName="categorie"
+                                        [mdbValidate]="false"
+                                        [value]="article.categorie"
+                                        mdbInputDirective>
+                                <label for="categorie">Categorie</label>
+                            </div>
+                            <div class="md-form">
+                                <input type="text"
+                                        id="content"
+                                        class="form-control"
+                                        formControlName="content"
+                                        [mdbValidate]="false"
+                                        [value]="article.content"
+                                        mdbInputDirective>
+                                <label for="content">Contenu</label>
+                            </div>
+            
+                            <button class="btn btn-primary mx-auto mt-3"
+                                    type="submit"
+                                    (click)="editArticle.hide()"
+                                    mdbWavesEffect 
+                                    [disabled]="editArticleForm.invalid && currentUpload?.progress < 100">Editer un article</button>
+                        </form>
+
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!--Modal: Article From-->
 
       </article>
     </div>
@@ -51,3 +111,74 @@
 
 </section>
 <!--Section: Blog-->
+
+<!--Modal: Article From-->
+<div mdbModal #addArticle="mdb-modal" class="modal fade" id="modalSubscription" tabindex="-1" role="dialog" aria-labelledby="article" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header deep-purple darken-2 white-text">
+                <h4 class="title"><i class="fa fa-newspaper-o"></i> Ajouter un article</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="addArticle.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+
+                <form [formGroup]="addArticleForm" (ngSubmit)="onAddArticle()" class="card-body">
+                    <div class="md-form">
+                      <input type="text"
+                              id="title"
+                              class="form-control"
+                              formControlName="title"
+                              [mdbValidate]="false"
+                              mdbInputDirective>
+                      <label for="title">Titre</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="text"
+                                id="categorie"
+                                class="form-control"
+                                formControlName="categorie"
+                                [mdbValidate]="false"
+                                mdbInputDirective>
+                        <label for="categorie">Categorie</label>
+                    </div>
+                    <div class="md-form">
+                      <input type="text"
+                              id="content"
+                              class="form-control"
+                              formControlName="content"
+                              [mdbValidate]="false"
+                              mdbInputDirective>
+                      <label for="content">Contenu</label>
+                    </div>
+                    <div class="form-group mt-5">
+                        <label for="illustration" class="ml-0 btn btn-block btn-primary">Choisir une illustration</label>
+                        <input type="file"
+                                id="illustration"
+                                style="display: none"
+                                formControlName="illustration"
+                                mdbInputDirective
+                                (change)="detectFiles($event)">                               
+                        <div class="progress animated fadeIn" *ngIf="currentUpload">
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}" [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+     
+                    <button class="btn btn-primary mx-auto mt-3"
+                            type="submit"
+                            (click)="addArticle.hide()"
+                            mdbWavesEffect 
+                            [disabled]="addArticleForm.invalid && currentUpload?.progress < 100">Ajouter un article</button>
+                  </form>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: Article From-->

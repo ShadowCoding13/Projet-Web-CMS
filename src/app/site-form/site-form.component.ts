@@ -31,8 +31,7 @@ export class SiteFormComponent implements OnInit {
       tel: ['', Validators.required],
       mail: ['', Validators.required, Validators.email],
       city: ['', Validators.required],
-      firstLign: ['', Validators.required],
-      secondLign: ['', Validators.required]
+      address: ['', Validators.required],
     });
   }
   
@@ -44,7 +43,12 @@ export class SiteFormComponent implements OnInit {
       title, 
       author, 
       description, 
-      null, 
+      [
+        'Accueil',
+        'A propos',
+        'Blog',
+        'Contact'
+      ], 
       null,
       {
         illustration: null,
@@ -60,9 +64,19 @@ export class SiteFormComponent implements OnInit {
         mail: this.siteForm.get('mail').value,
         address: {
           city: this.siteForm.get('city').value,
-          firstLign: this.siteForm.get('firstLign').value,
-          secondLign: this.siteForm.get('secondLign').value
+          address: this.siteForm.get('address').value,
         }
+      },
+      {
+        lastUpdate: new Date(),
+        articles: [
+          {
+            title: "Création de mon site",
+            content: "Nous pouvons innauguré aujourd'hui la création de mon site",
+            categorie: "Start",
+            illustration: "https://images.unsplash.com/photo-1494249465471-5655b7878482?ixlib=rb-0.3.5&s=997116405ede44d63ddc54f16e2db8ce&w=1000&q=80",
+          }
+        ]
       }
     );
     this.sitesService.createNewSite(newSite);

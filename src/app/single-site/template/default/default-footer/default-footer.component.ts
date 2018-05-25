@@ -15,7 +15,7 @@ export class DefaultFooterComponent implements OnInit {
   ngOnInit() {
   }
 
-  getUrl(title){
+  getUrl(title: string){
     return title.toLowerCase().replace(/ /g, '-');
   }
 

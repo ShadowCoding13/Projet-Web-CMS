@@ -14,15 +14,29 @@
       </div>
       <div class="col-md text-center">
         <img *ngIf="site.about.illustration" [src]="site.about.illustration" class="img-fluid">
-        <button class="btn btn-primary add">Ajouter une image</button>
+        <div class="form-group mt-5">
+            <label for="illustration" class="btn btn-primary add">Choisir une illustration</label>
+            <input type="file"
+                    id="illustration"
+                    style="display: none"
+                    mdbInputDirective
+                    (change)="detectFiles($event, 'illustration')">
+        </div>
       </div>
     </div>
 
     <!-- Section Story -->
     <div class="row mt-5">
       <div class="col-md text-center">
-        <img *ngIf="site.about.illustration" [src]="site.about.photoAuthor" class="img-fluid">
-        <button class="btn btn-primary add">Ajouter une image</button>
+        <img *ngIf="site.about.photoAuthor" [src]="site.about.photoAuthor" class="img-fluid">
+        <div class="form-group mt-5">
+          <label for="photoAuthor" class="btn btn-primary add">Choisir une illustration</label>
+          <input type="file"
+                  id="photoAuthor"
+                  style="display: none"
+                  mdbInputDirective
+                  (change)="detectFiles($event, 'photoAuthor')">
+        </div>
       </div>
       <div class="col-md">
         <h3 class="my-3">Mon Histoire</h3>
@@ -33,3 +47,9 @@
     <hr>
 </section>
 <!--Section: Accueil-->
+
+<div class="upload">
+  <div class="progress animated fadeIn" *ngIf="currentUpload">
+      <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}" [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+</div>

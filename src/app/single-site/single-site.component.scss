@@ -1,16 +1,10 @@
 .demo {
-    box-shadow: rgba(0, 0, 0, 0.4) 5px 5px 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
     background-color: white;
     padding: 0;
-    max-height: 100vh;
-    overflow-y: scroll;
+    width: 1400px;
+    max-width: 100%;
     overflow-x: hidden;
-}
-
-.back {
-    position: fixed;
-    right: 2%;
-    bottom: 2%
 }
 
 section {

@@ -1,34 +1,24 @@
 interface Address {
     city: string,
-    firstLign: string,
-    secondLign: string
+    address: string,
 }
 
 interface Article {
-    id: string,
     title: string,
     categorie: string,
     content: string,
     illustration: string,
-    createdAt: Date,
-    updatedAt: Date,
-    like: number,
-    comments: Comment[]
+    like?: number,
+    comments?: Comment[]
 }
 
 interface Comment {
-    id: number,
     author: string,
     content: string,
 }
 
 
 export class Site {
-
-    public blog: {
-        lastUpdate: Date,
-        articles: Article[]
-    }
 
     constructor(
         public title: string, 
@@ -49,6 +39,10 @@ export class Site {
             tel: number,
             mail: string,
             address: Address,
+        },
+        public blog: {
+            lastUpdate?: Date,
+            articles: Article[]
         }
     ) {}
 }

@@ -81,15 +81,22 @@ export class SitesService {
     );
   }
 
-  createNewSite(data: Site) {
-    const newSite : Site = data;
-    newSite.navigation = [
-      'Accueil',
-      'A propos',
-      'Blog',
-      'Contact'
-    ];
-    this.sites.push(newSite);
+  createNewSite(site: Site) {
+    this.sites.push(site);
+    this.saveSites();
+    this.emitSites();
+  }
+
+  updateSite(site: Site){
+    const siteIndexToRemove = this.sites.findIndex(
+      (siteEl) => {
+        if(siteEl === site) {
+          return true;
+        }
+      }
+    );
+    this.sites.splice(siteIndexToRemove, 1);
+    this.sites.push(site);
     this.saveSites();
     this.emitSites();
   }

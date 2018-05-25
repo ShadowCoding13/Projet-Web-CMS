@@ -16,7 +16,7 @@ export class PublicSiteComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    this.site = new Site(null, null, null, null, null, null, null);
+    this.site = new Site(null, null, null, null, null, null, null, null);
     const site = this.route.snapshot.params['author'] + '/' + this.route.snapshot.params['site'];
     this.sitesService.getPublicSite(site).then(
       (site: Site) => {
