@@ -26,8 +26,6 @@ export class DefaultBlogComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.selectedFiles = null;
-    this.currentUpload = null
   }
 
   initForm() {
@@ -48,7 +46,6 @@ export class DefaultBlogComponent implements OnInit {
     const title = this.addArticleForm.get('title').value;
     const categorie = this.addArticleForm.get('categorie').value;
     const content = this.addArticleForm.get('content').value;
-    const illustration = this.addArticleForm.get('illustration').value;
     const newArticle = {
       title: title,
       categorie: categorie,

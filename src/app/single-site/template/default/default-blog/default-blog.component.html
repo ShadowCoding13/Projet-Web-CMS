@@ -157,13 +157,11 @@
                       <label for="content">Contenu</label>
                     </div>
                     <div class="form-group mt-5">
-                        <label for="illustration" class="ml-0 btn btn-block btn-primary">Choisir une illustration</label>
+                        <label for="illustration" class="ml-0 btn btn-block btn-primary" mdbInputDirective>Choisir une illustration</label>
                         <input type="file"
                                 id="illustration"
-                                style="display: none"
-                                formControlName="illustration"
-                                mdbInputDirective
-                                (change)="detectFiles($event)">                               
+                                (change)="detectFiles($event)"
+                                mdbInputDirective>                               
                         <div class="progress animated fadeIn" *ngIf="currentUpload">
                             <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}" [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>

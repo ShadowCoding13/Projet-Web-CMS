@@ -20,12 +20,17 @@
 
     <!-- Jumbotron -->
     <div class="jumbotron text-center linear-blue">
-        <div class="edit-design">
-            <button class="btn btn-primary">Changer la bannière</button>
-        </div>
         <h1 class="h1-responsive">{{ site.title }}</h1>
         <p class="lead">{{ site.author }}</p>
         <hr class="my-2">
-        <a class="btn btn-primary btn-lg waves-light" [href]="url + '#' + 3"  role="button" mdbWavesEffect>Contactez nous !</a>
+        <a class="btn transparent btn-lg waves-light" [href]="url + '#' + 3"  role="button" mdbWavesEffect>Contactez nous !</a>
+    </div>
+
+    <!-- Edit design -->
+    <div class="edit-design">
+        <div class="btn-group">
+            <button class="btn deep-purple darken-2">Bannière</button>
+            <button class="btn deep-purple darken-2">Template</button>
+        </div>
     </div>
 </header>

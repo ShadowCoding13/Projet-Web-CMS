@@ -29,8 +29,13 @@
     background: #4285F4;
 }
 
-.edit-design {
+.jumbotron {
     position: relative;
-    right: 0px;
-    bottom: 0px
+}
+
+.edit-design {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

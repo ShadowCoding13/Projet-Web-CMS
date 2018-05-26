@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { MySitesService } from './my-sites.service';
+import { SitesService } from './sites.service';
 
 describe('MySitesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MySitesService]
+      providers: [SitesService]
     });
   });
 
-  it('should be created', inject([MySitesService], (service: MySitesService) => {
+  it('should be created', inject([SitesService], (service: SitesService) => {
     expect(service).toBeTruthy();
   }));
 });

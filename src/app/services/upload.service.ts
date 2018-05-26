@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Upload } from '../models/upload.model';
+import {Md5} from 'ts-md5/dist/md5';
 import * as firebase from 'firebase'
 
 @Injectable()
@@ -13,7 +14,7 @@ export class UploadService {
 
   pushUpload(upload: Upload) {
     let storageRef = firebase.storage().ref();
-    let uploadTask = storageRef.child(`${this.basePath}/${upload.file.name + new Date()}`).put(upload.file);
+    let uploadTask = storageRef.child(`${this.basePath}/${Md5.hashStr(upload.file.name + new Date()) + upload.file.name}`).put(upload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot: any) =>  {
@@ -28,19 +29,13 @@ export class UploadService {
         // upload success
         upload.url = uploadTask.snapshot.downloadURL
         upload.name = upload.file.name
-        storageRef.child(`${this.basePath}/${upload.file.name}`).getDownloadURL().then(
+        storageRef.child(`${this.basePath}/${Md5.hashStr(upload.file.name + new Date()) + upload.file.name}`).getDownloadURL().then(
           (url) => {
             this.referenceUpload = url;
           }
-        )
-        this.saveFileData(upload);
+        );       
       }
     );
-  }
-
-  // Writes the file details to the realtime db
-  private saveFileData(upload: Upload) {
-    firebase.database().ref(`users/${this.basePath}/${upload.file.name.split('.')}`).push(upload.url)
   }
 
   deleteUpload(upload: Upload) {
