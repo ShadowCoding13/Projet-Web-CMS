@@ -36,6 +36,12 @@ import { DefaultFooterComponent } from './single-site/template/default/default-f
 import { DefaultHeaderComponent } from './single-site/template/default/default-header/default-header.component';
 import { UploadService } from './services/upload.service';
 import { GeocodingService } from './services/geocoding.service';
+import { PublicDefaultHeaderComponent } from './public-site/template/default/public-default-header/public-default-header.component';
+import { PublicDefaultFooterComponent } from './public-site/template/default/public-default-footer/public-default-footer.component';
+import { PublicDefaultHomeComponent } from './public-site/template/default/public-default-home/public-default-home.component';
+import { PublicDefaultAboutComponent } from './public-site/template/default/public-default-about/public-default-about.component';
+import { PublicDefaultBlogComponent } from './public-site/template/default/public-default-blog/public-default-blog.component';
+import { PublicDefaultContactComponent } from './public-site/template/default/public-default-contact/public-default-contact.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +66,12 @@ import { GeocodingService } from './services/geocoding.service';
     DefaultElementComponent,
     DefaultFooterComponent,
     DefaultHeaderComponent,
+    PublicDefaultHeaderComponent,
+    PublicDefaultFooterComponent,
+    PublicDefaultHomeComponent,
+    PublicDefaultAboutComponent,
+    PublicDefaultBlogComponent,
+    PublicDefaultContactComponent,
   ],
   imports: [
     BrowserModule,

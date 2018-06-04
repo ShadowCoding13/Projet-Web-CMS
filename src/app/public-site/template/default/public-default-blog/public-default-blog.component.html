@@ -1,0 +1,48 @@
+
+<!--Section: Blog-->
+<section class="py-4 text-center text-lg-left">
+
+  <!--Section heading-->
+  <h2 class="mb-5 pt-4">
+      Blog
+  </h2>
+
+  <!--Post row-->
+  <div *ngIf="site.blog">
+    <article class="row my-5" *ngFor="let article of site.blog.articles">
+
+      <!--Grid column-->
+      <div class="col-lg-5 col-xl-5 pb-3">
+          <!--Featured image-->
+          <div class="view overlay rounded z-depth-2">
+              <img [src]="article.illustration"
+                  class="img-fluid">
+          </div>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-7 col-xl-7">
+          <!--Excerpt-->
+          <a href="" class="indigo-text">
+              <h6 class="font-weight-bold pb-1">
+                  {{ article.categorie }}</h6>
+          </a>
+          <h3 class="mb-4 font-weight-bold dark-grey-text">
+              <strong>{{ article.title }}</strong>
+          </h3>
+          <p>{{ article.content }}</p>
+      </div>
+      <!--Grid column-->
+
+    </article>
+  </div>
+  
+  <!--Post row-->
+
+  <p *ngIf="!site.blog"><i>Il n'y a pour le moment aucun article.</i></p>
+
+  <hr>
+
+</section>
+<!--Section: Blog-->

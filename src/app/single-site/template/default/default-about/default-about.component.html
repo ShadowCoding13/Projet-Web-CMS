@@ -13,11 +13,11 @@
         <p class="text-justify text-to-edit">{{ site.about.goal }}</p>
       </div>
       <div class="col-md text-center">
-        <div class="selector">
-            <img *ngIf="site.about.illustration" [src]="site.about.illustration" alt="Avatar" class="image img-fluid">
+        <div *ngIf="site.about.illustration" class="selector">
+            <img [src]="site.about.illustration" alt="Avatar" class="image img-fluid w-100 rounded z-depth-2">
             <div *ngIf="!currentUpload" class="middle">
               <div class="form-group">
-                <label for="illustration" class="btn btn-primary add">Choisir une image</label>
+                <label>Choisir une image</label>
                 <input type="file"
                         id="illustration"
                         (change)="detectFiles($event); onDeclareUpload('illustration')"
@@ -31,17 +31,30 @@
               </div>
             </div>
           </div>
+          <div *ngIf="!site.about.illustration" class="form-group">
+            <label>Choisir une image</label>
+            <input type="file"
+                    id="photoAuthor"
+                    (change)="detectFiles($event); onDeclareUpload('illustration')"
+                    mdbInputDirective>
+            <div *ngIf="currentUpload && uploaded == 'illustration'">
+              <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddIllustration()">Valider</button>                               
+              <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}" [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
 
     <!-- Section Story -->
     <div class="row mt-5">
       <div class="col-md text-center">
-        <div class="selector">
-          <img *ngIf="site.about.photoAuthor" [src]="site.about.photoAuthor" alt="Avatar" class="image img-fluid">
+        <div *ngIf="site.about.photoAuthor" class="selector">
+          <img [src]="site.about.photoAuthor" alt="Avatar" class="image img-fluid w-100 rounded z-depth-2">
           <div *ngIf="!currentUpload" class="middle">
             <div class="form-group">
-              <label for="photoAuthor" class="btn btn-primary add">Choisir une image</label>
+              <label>Choisir une image</label>
               <input type="file"
                       id="photoAuthor"
                       (change)="detectFiles($event); onDeclareUpload('photoAuthor')"
@@ -49,6 +62,19 @@
             </div>
           </div>
           <div class="over" *ngIf="currentUpload && uploaded == 'photoAuthor'">
+            <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddPhotoAuthor()">Valider</button>                               
+            <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}" [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!site.about.photoAuthor" class="form-group">
+          <label>Choisir une image</label>
+          <input type="file"
+                  id="photoAuthor"
+                  (change)="detectFiles($event); onDeclareUpload('photoAuthor')"
+                  mdbInputDirective>
+          <div *ngIf="currentUpload && uploaded == 'photoAuthor'">
             <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddPhotoAuthor()">Valider</button>                               
             <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
                 <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}" [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>

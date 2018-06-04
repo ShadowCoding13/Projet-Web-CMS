@@ -14,7 +14,7 @@ export class UploadService {
 
   pushUpload(upload: Upload) {
     let storageRef = firebase.storage().ref();
-    let uploadTask = storageRef.child(`${this.basePath}/${Md5.hashStr(upload.file.name + new Date()) + upload.file.name}`).put(upload.file);
+    let uploadTask = storageRef.child(`${this.basePath}/${Md5.hashStr(upload.file.name)}`).put(upload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot: any) =>  {
@@ -29,7 +29,7 @@ export class UploadService {
         // upload success
         upload.url = uploadTask.snapshot.downloadURL
         upload.name = upload.file.name
-        storageRef.child(`${this.basePath}/${Md5.hashStr(upload.file.name + new Date()) + upload.file.name}`).getDownloadURL().then(
+        storageRef.child(`${this.basePath}/${Md5.hashStr(upload.file.name)}`).getDownloadURL().then(
           (url) => {
             this.referenceUpload = url;
           }

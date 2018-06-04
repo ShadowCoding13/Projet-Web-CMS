@@ -1,0 +1,29 @@
+<!-- Header -->
+<header>
+  <!--Navbar-->
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo w-100 fixed-top">    
+      <!-- Navbar brand -->
+      <logo><a class="navbar-brand" href="#">{{ site.title }}</a></logo>
+      <!-- Collapsible content -->
+      <links>
+          <!-- Links -->
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item" *ngFor="let navigation of site.navigation; let i =index">
+                  <a class="nav-link waves-light" [href]="url + '#' + i" mdbWavesEffect>{{ navigation }}</a>
+              </li>
+          </ul>
+          <!-- Links -->
+      </links>
+      <!-- Collapsible content -->
+  </mdb-navbar>
+  <!--/.Navbar-->
+
+  <!-- Jumbotron -->
+  <div class="jumbotron text-center linear-blue">
+      <h1 class="h1-responsive">{{ site.title }}</h1>
+      <p class="lead">{{ site.author }}</p>
+      <hr class="my-2">
+      <a class="btn transparent btn-lg waves-light" [href]="url + '#' + 3"  role="button" mdbWavesEffect>Contactez nous !</a>
+  </div>
+
+</header>

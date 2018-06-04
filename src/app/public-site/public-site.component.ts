@@ -11,6 +11,7 @@ import { SitesService } from '../services/sites.service';
 export class PublicSiteComponent implements OnInit {
 
   public site: Site;
+  public url;
 
   constructor(private route: ActivatedRoute, private sitesService: SitesService,
               private router: Router) {}
@@ -23,10 +24,8 @@ export class PublicSiteComponent implements OnInit {
         this.site = site;
       }
     );
-  }
-
-  getUrl(site){
-    return site.toLowerCase().replace(/ /g, '-');
+    console.log(this.site)
+    this.url = this.router.url
   }
 
 }

@@ -1,1 +1,15 @@
-<p>{{ site | json }}</p>
+<!-- Header -->
+<app-public-default-header [site]="site" [url]="url"></app-public-default-header>
+        
+<!-- Main -->
+<main class="container">
+    <section *ngFor="let navigation of site.navigation; let i = index" [id]="i">
+        <app-public-default-home [site]="site" *ngIf="navigation === 'Accueil'"></app-public-default-home>
+        <app-public-default-about [site]="site" *ngIf="navigation === 'A propos'"></app-public-default-about>
+        <app-public-default-blog [site]="site" *ngIf="navigation === 'Blog'"></app-public-default-blog>
+        <app-public-default-contact [site]="site" *ngIf="navigation === 'Contact'"></app-public-default-contact>
+    </section>
+</main>
+
+<!-- Footer -->
+<app-public-default-footer [site]="site"></app-public-default-footer>
