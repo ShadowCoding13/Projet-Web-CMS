@@ -32,6 +32,52 @@
               <strong>{{ article.title }}</strong>
           </h3>
           <p>{{ article.content }}</p>
+
+          <h4 class="mt-4 font-weight-bold dark-grey-text">Commentaires :</h4>
+          <div class="comments">
+            <div class="card p-2 my-4" *ngFor="let comment of article.comments; let i = index">
+                <h5 class="card-header white">
+                    <i class="fa fa-user-circle mr-2" aria-hidden="true"></i>
+                    <strong>{{comment.author}}</strong>
+                        a commenté :
+                </h5>
+                <p class="card-body">
+                    <i class="fa fa-quote-left mr-2" aria-hidden="true"></i>
+                    {{comment.content}}
+                    <i class="fa fa-quote-right ml-2" aria-hidden="true"></i>
+                </p>
+            </div>
+            <p *ngIf="!article.comments">Il n'y a pour le moment aucun commentaire pour cet article</p>
+            </div>
+
+            <div class="card">
+                <form [formGroup]="addCommentForm" (ngSubmit)="onAddComment(article)" class="card-body">
+                    <h4>Ajouter un commentaire</h4>
+                    <div class="md-form">
+                    <input type="text"
+                            id="author"
+                            class="form-control"
+                            formControlName="author"
+                            [mdbValidate]="false"
+                            mdbInputDirective>
+                    <label for="title">Auteur</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="text"
+                                id="contenu"
+                                class="form-control"
+                                formControlName="contenu"
+                                [mdbValidate]="false"
+                                mdbInputDirective>
+                        <label for="categorie">Contenu</label>
+                    </div>
+
+                    <button class="btn btn-primary mx-auto mt-3"
+                            type="submit"
+                            mdbWavesEffect 
+                            [disabled]="addCommentForm.invalid">Ajouter un commentaire</button>
+                </form>
+            </div>
       </div>
       <!--Grid column-->
 

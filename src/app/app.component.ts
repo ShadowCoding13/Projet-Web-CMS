@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -21,6 +21,14 @@ export class AppComponent {
       messagingSenderId: "622951839899"
     };
     firebase.initializeApp(config);
+    if (this.route.navigated) {
+      this.url = this.route.url;
+      console.log(this.url)
+    }
+  }
+
+  ngOnInit(){
+    this.url = this.route.url
   }
 
 }

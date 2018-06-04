@@ -17,6 +17,7 @@ export class DefaultBlogComponent implements OnInit {
 
   editArticleForm: FormGroup;
   addArticleForm: FormGroup;
+  addCommentForm: FormGroup;
 
   @Input() site: Site
 
@@ -40,6 +41,10 @@ export class DefaultBlogComponent implements OnInit {
       content: ['', [Validators.required]],
       illustration: ['', [Validators.required]],
     });
+    this.addCommentForm = this.formBuilder.group({
+      author: ['', [Validators.required]],
+      contenu: ['', [Validators.required]],
+    });
   }
 
   onAddArticle() {
@@ -53,6 +58,24 @@ export class DefaultBlogComponent implements OnInit {
       illustration: this.uploadService.referenceUpload,
     };
     this.site.blog.articles.push(newArticle);
+    this.sitesService.updateSite(this.site);
+  }
+
+  onAddComment(article) {
+    const articleIndex = this.site.blog.articles.findIndex(
+      (articleEl) => {
+        if(articleEl === article) {
+          return true;
+        }
+      }
+    );
+    const author = this.addCommentForm.get('author').value;
+    const contenu = this.addCommentForm.get('contenu').value;
+    const newComment = {
+      author: author,
+      content: contenu,
+    };
+    this.site.blog.articles[articleIndex].comments.push(newComment);
     this.sitesService.updateSite(this.site);
   }
 
@@ -99,6 +122,25 @@ export class DefaultBlogComponent implements OnInit {
     let file = this.selectedFiles.item(0)
     this.currentUpload = new Upload(file);
     this.uploadService.pushUpload(this.currentUpload);
+  }
+
+  onDeleteComment(comment, article){
+    const articleIndex = this.site.blog.articles.findIndex(
+      (articleEl) => {
+        if(articleEl === article) {
+          return true;
+        }
+      }
+    );
+    const commentIndexToRemove = this.site.blog.articles[articleIndex].comments.findIndex(
+      (commentEl) => {
+        if(commentEl === comment) {
+          return true;
+        }
+      }
+    );
+    this.site.blog.articles[articleIndex].comments.splice(commentIndexToRemove, 1);
+    this.sitesService.updateSite(this.site);
   }
 
 }

@@ -2,12 +2,13 @@
 
 <div class="mx-auto my-5">
 
-    <button class="btn btn-primary w-100" (click)="onViewPublic()">Voir la version public</button>
-
     <!-- Démo du site -->
     <div class="card demo mx-auto">
 
-        <h3 class="card-header deep-purple darken-2 white-text">Aperçu</h3>
+        <h3 class="card-header deep-purple darken-2 white-text d-flex align-items-center space-beetween">
+            <span class="mr-auto">Aperçu</span>
+            <button class="btn rgba-white-slight waves-light float-right" (click)="onViewPublic()">Voir la version public</button>
+        </h3>
 
         <!-- Header -->
         <app-default-header [site]="site" [url]="url"></app-default-header>

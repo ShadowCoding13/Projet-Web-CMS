@@ -22,3 +22,15 @@
     border-radius: 3px;
     background: #4285F4;
 }
+
+.comment {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+    border-radius: 7px;
+    margin-bottom: 12px;
+}
+
+.comments {
+    max-height: 60vh;
+    overflow: scroll;
+    padding: 0px 24px;
+}
