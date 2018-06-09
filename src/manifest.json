@@ -6,6 +6,19 @@
     "theme_color": "#3300ff",
     "background_color": "#ffffff",
 
+    "icons": [
+      {
+        "src": "./assets/icons/icon192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "./assets/icons/icon512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+
     "display": "standalone",
     "orientation": "portrait"
 

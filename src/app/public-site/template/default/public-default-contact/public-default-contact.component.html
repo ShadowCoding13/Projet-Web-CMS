@@ -5,93 +5,99 @@
   <h2 class="pt-4">Contact</h2>
   <!--Section description-->
   <p class="py-4">
-      {{ site.contact.description }}
+    {{ site.contact.description }}
   </p>
 
   <div class="row">
 
-      <!--Grid column-->
-      <div class="col-lg-5 mb-4">
+    <!--Grid column-->
+    <div class="col-lg-5 mb-4">
 
-          <!--Form with header-->
-          <div class="card">
+      <!--Form with header-->
+      <div class="card">
 
-              <div class="card-body">
-                  <!--Header-->
-                  <div class="form-header mb-3">
-                      <h3>
-                          <i class="fa fa-envelope mr-2"></i>Ecrivez-nous !</h3>
-                  </div>
-
-                  <!--Body-->
-                  <div class="md-form">
-                      <i class="fa fa-user prefix grey-text"></i>
-                      <input mdbInputDirective type="text" id="form3" class="form-control">
-                      <label for="form3">Nom</label>
-                  </div>
-
-                  <div class="md-form">
-                      <i class="fa fa-envelope prefix grey-text"></i>
-                      <input mdbInputDirective type="text" id="form2" class="form-control">
-                      <label for="form2">Prénom</label>
-                  </div>
-
-                  <div class="md-form">
-                      <i class="fa fa-tag prefix grey-text"></i>
-                      <input mdbInputDirective type="text" id="form32" class="form-control">
-                      <label for="form34">Objet</label>
-                  </div>
-
-                  <div class="md-form">
-                      <i class="fa fa-pencil prefix grey-text"></i>
-                      <textarea mdbInputDirective type="text" id="form8" class="md-textarea"></textarea>
-                      <label for="form8">Icon Prefix</label>
-                  </div>
-
-                  <div class="text-center">
-                      <button class="btn btn-light-blue waves-light" mdbWavesEffect>Envoyer</button>
-                  </div>
-
-              </div>
-
-          </div>
-          <!--Form with header-->
-
-      </div>
-      <!--Grid column-->
-
-      <!--Grid column-->
-      <div class="col-lg-7">
-
-          <!--Google map-->
-          <agm-map class="z-depth-1-half map-container" style="height: 400px;" [latitude]="lat" [longitude]="lng">
-              <agm-marker [latitude]="lat" [longitude]="lng">
-                  <agm-info-window>Mon établissement</agm-info-window>
-              </agm-marker>
-          </agm-map>
-
-          <br>
-          <!--Buttons-->
-          <div class="row text-center">
-              <div class="col-md-4">
-                  <i class="fa fa-map-marker"></i>
-                  <p>{{ site.contact.address.address }}<br>
-                    {{ site.contact.address.city }}</p>
-              </div>
-
-              <div class="col-md-4">
-                  <i class="fa fa-phone"></i>
-                  <p>{{ site.contact.tel }}</p>
-              </div>
-
-              <div class="col-md-4">
-                  <i class="fa fa-envelope"></i>
-                  <p>{{ site.contact.mail }}</p>
-              </div>
+        <div class="card-body">
+          <!--Header-->
+          <div class="form-header mb-3">
+            <h3>
+              <i class="fa fa-envelope mr-2"></i>Ecrivez-nous !</h3>
           </div>
 
+          <!--Body-->
+          <div class="md-form">
+            <i class="fa fa-user prefix grey-text"></i>
+            <input mdbInputDirective type="text" id="form3" class="form-control">
+            <label for="form3">Nom</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input mdbInputDirective type="text" id="form2" class="form-control">
+            <label for="form2">Prénom</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fa fa-tag prefix grey-text"></i>
+            <input mdbInputDirective type="text" id="form32" class="form-control">
+            <label for="form34">Objet</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fa fa-pencil prefix grey-text"></i>
+            <textarea mdbInputDirective type="text" id="form8" class="md-textarea"></textarea>
+            <label for="form8">Icon Prefix</label>
+          </div>
+
+          <div class="text-center">
+            <button class="btn waves-light" mdbWavesEffect data-toggle="modal"
+                    [ngClass]="{ 'indigo': site.background == 'blue',
+                      'black': site.background == 'black',
+                      'green': site.background == 'green',
+                      'red': site.background == 'red'}"
+                    data-target="#basicExample" (click)="frame.show()">Envoyer
+            </button>
+          </div>
+
+        </div>
+
       </div>
-      <!--Grid column-->
+      <!--Form with header-->
+
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-7">
+
+      <!--Google map-->
+      <agm-map class="z-depth-1-half map-container" style="height: 400px;" [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng">
+          <agm-info-window>Mon établissement</agm-info-window>
+        </agm-marker>
+      </agm-map>
+
+      <br>
+      <!--Buttons-->
+      <div class="row text-center">
+        <div class="col-md-4">
+          <i class="fa fa-map-marker"></i>
+          <p>{{ site.contact.address.address }}<br>
+            {{ site.contact.address.city }}</p>
+        </div>
+
+        <div class="col-md-4">
+          <i class="fa fa-phone"></i>
+          <p>{{ site.contact.tel }}</p>
+        </div>
+
+        <div class="col-md-4">
+          <i class="fa fa-envelope"></i>
+          <p>{{ site.contact.mail }}</p>
+        </div>
+      </div>
+
+    </div>
+    <!--Grid column-->
 
   </div>
 
@@ -99,3 +105,17 @@
 
 </section>
 <!--Section: Contact-->
+
+<div mdbModal #frame="mdb-modal" class="modal fade bottom z-depth-2" id="frameModalBottom" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-frame modal-bottom" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <p class="pt-1">Vôtre message a été envoyé !</p>
+        <button type="button" class="btn btn-primary waves-light" data-dismiss="modal" (click)="frame.hide()"
+                mdbWavesEffect>Fermer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

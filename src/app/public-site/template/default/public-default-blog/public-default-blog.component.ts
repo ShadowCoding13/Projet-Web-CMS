@@ -3,6 +3,7 @@ import { Site } from '../../../../models/site.model';
 import { SitesService } from '../../../../services/sites.service';
 import { UploadService } from '../../../../services/upload.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-public-default-blog',
@@ -15,12 +16,12 @@ export class PublicDefaultBlogComponent implements OnInit {
 
   addCommentForm: FormGroup;
 
-  constructor(private sitesService: SitesService, 
-              private uploadService: UploadService,
-              private formBuilder: FormBuilder) { }
+  constructor(private sitesService: SitesService,
+              private formBuilder: FormBuilder,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.initForm()
+    this.initForm();
   }
 
   initForm() {
@@ -44,8 +45,20 @@ export class PublicDefaultBlogComponent implements OnInit {
       author: author,
       content: contenu,
     };
-    this.site.blog.articles[articleIndex].comments.push(newComment);
-    this.sitesService.updateSite(this.site);
+    if (this.site.blog.articles[articleIndex].comments) {
+      this.site.blog.articles[articleIndex]['comments'].push(newComment);
+    } else {
+      const setArticle = new Object();
+      setArticle['content'] = this.site.blog.articles[articleIndex].content;
+      setArticle['illustration'] = this.site.blog.articles[articleIndex].illustration;
+      setArticle['title'] = this.site.blog.articles[articleIndex].title;
+      setArticle['categorie'] = this.site.blog.articles[articleIndex].categorie;
+      setArticle['comments'] = [];
+      setArticle['comments'].push(newComment);
+      this.site.blog.articles[articleIndex] = setArticle as any;
+    }
+
+    this.sitesService.updatePublicSite(this.site, this.route.snapshot.params['author']);
   }
 
 }

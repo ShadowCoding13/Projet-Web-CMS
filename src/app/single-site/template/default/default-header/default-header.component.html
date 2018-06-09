@@ -1,7 +1,11 @@
 <!-- Header -->
 <header>
     <!--Navbar-->
-    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo w-100">    
+    <mdb-navbar SideClass="navbar navbar-expand-lg navigation navbar-dark w-100"
+                style=" background: transparent;
+                        position: absolute;
+                        width: 100%;
+                        top: 0px;">
         <!-- Navbar brand -->
         <logo><a class="navbar-brand" href="#">{{ site.title }}</a></logo>
         <!-- Collapsible content -->
@@ -19,18 +23,66 @@
     <!--/.Navbar-->
 
     <!-- Jumbotron -->
-    <div class="jumbotron text-center linear-blue">
-        <h1 class="h1-responsive">{{ site.title }}</h1>
+    <div class="jumbotron text-center"
+         [ngClass]="{ 'linear-blue': site.background == 'blue',
+                      'linear-black': site.background == 'black',
+                      'linear-green': site.background == 'green',
+                      'linear-red': site.background == 'red'}">
+        <h1 class="h1-responsive" style="margin-top: 40px">{{ site.title }}</h1>
         <p class="lead">{{ site.author }}</p>
         <hr class="my-2">
-        <a class="btn transparent btn-lg waves-light" [href]="url + '#' + 3"  role="button" mdbWavesEffect>Contactez nous !</a>
+        <a class="btn btn-lg waves-light" [href]="url + '#' + 3"  role="button" mdbWavesEffect
+           [ngClass]="{ 'indigo': site.background == 'blue',
+                      'black': site.background == 'black',
+                      'green': site.background == 'green',
+                      'red': site.background == 'red'}">Contactez nous !</a>
     </div>
 
     <!-- Edit design -->
     <div class="edit-design">
         <div class="btn-group">
-            <button class="btn deep-purple darken-2">Bannière</button>
+            <button class="btn deep-purple darken-2" (click)="editTheme.show()">Thèmes</button>
             <button class="btn deep-purple darken-2">Template</button>
         </div>
     </div>
 </header>
+
+<!--Modal: Text From-->
+<div mdbModal #editTheme="mdb-modal" class="modal fade" id="editTheme" tabindex="-1" role="dialog" aria-labelledby="edittheme" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header deep-purple darken-2 white-text">
+        <h4 class="title"><i class="fa fa-newspaper-o"></i> Editer le thème</h4>
+        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="editTheme.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body mb-0">
+
+        <form [formGroup]="editThemeForm" (ngSubmit)="onEditTheme()" class="card-body">
+
+          <label>Choisir un thème</label>
+          <select class="form-control" formControlName="theme" id="theme">
+            <option value="blue">Sky Blue</option>
+            <option value="red">Red Stellar</option>
+            <option value="green">Green Earth</option>
+            <option value="black">Black Stylish</option>
+          </select>
+
+          <button class="btn btn-primary mx-auto mt-3"
+                  type="submit"
+                  (click)="editTheme.hide()"
+                  mdbWavesEffect
+                  [disabled]="editThemeForm.invalid">Editer le theme</button>
+        </form>
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Text From-->

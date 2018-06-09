@@ -1,18 +1,18 @@
 <app-jumbotron [title]=title [subtitle]=subtitle></app-jumbotron>
 
-<div class="mx-auto my-5">
+<div class="mx-auto my-5 ">
+
+  <h3 class="card-header rounded deep-purple darken-2 white-text tool d-flex align-items-center my-5 space-beetween">
+    <span class="mr-auto">Aperçu</span>
+    <button class="btn rgba-white-slight waves-light float-right" (click)="onViewPublic()">Voir la version public</button>
+  </h3>
 
     <!-- Démo du site -->
     <div class="card demo mx-auto">
 
-        <h3 class="card-header deep-purple darken-2 white-text d-flex align-items-center space-beetween">
-            <span class="mr-auto">Aperçu</span>
-            <button class="btn rgba-white-slight waves-light float-right" (click)="onViewPublic()">Voir la version public</button>
-        </h3>
-
         <!-- Header -->
         <app-default-header [site]="site" [url]="url"></app-default-header>
-        
+
         <!-- Main -->
         <main class="container">
             <section *ngFor="let navigation of site.navigation; let i = index" [id]="i">
@@ -25,6 +25,6 @@
 
         <!-- Footer -->
         <app-default-footer [site]="site"></app-default-footer>
-                            
+
     </div>
 </div>

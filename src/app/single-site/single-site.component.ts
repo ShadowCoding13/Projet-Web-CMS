@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Site } from '../models/site.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SitesService } from '../services/sites.service';
-import { Subscription } from 'rxjs/Subscription';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UploadService } from '../services/upload.service';
-import { Upload } from '../models/upload.model';
-import { AuthService } from '../services/auth.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-single-site',
@@ -16,18 +13,17 @@ import { AuthService } from '../services/auth.service';
 export class SingleSiteComponent implements OnInit {
 
   title: string;
-  subtitle: string = "Edition de mon site";
+  subtitle = 'Edition de mon site';
 
   site: Site;
   url;
   id;
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
               private sitesService: SitesService,
               private uploadService: UploadService,
               private router: Router,
-              private formBuilder: FormBuilder,
-              private user: AuthService) {}
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.site = new Site(null, null, null, null, null, null, null, null);
@@ -35,22 +31,15 @@ export class SingleSiteComponent implements OnInit {
     this.sitesService.getSingleSite(+this.id).then(
       (site: Site) => {
         this.site = site;
-        this.title = site.title
+        this.title = site.title;
       }
     );
     this.url = this.router.url;
+    this.authService.getUser();
   }
 
-  onBack() {
-    this.router.navigate(['/sites']);
+  onViewPublic() {
+    this.router.navigate(['/public/' + this.authService.user.uid + '/' + this.id]);
   }
 
-  onDeleteSite(site: Site) {
-    this.sitesService.removeSite(site);
-  }
-
-  onViewPublic(){
-    this.sitesService.getPublicSite(this.id)
-  }
-    
 }

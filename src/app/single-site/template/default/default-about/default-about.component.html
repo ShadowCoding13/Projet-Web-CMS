@@ -1,93 +1,231 @@
 <!--Section: A propos-->
 <section class="py-4 text-center text-lg-left">
 
-    <!--Section heading-->
-    <h2 class="mb-5 pt-4">A Propos</h2>
-    <!--Section description-->
-    <p class="mb-5 pb-3 text-justify text-to-edit">{{ site.about.content }}</p>
+  <!--Section heading-->
+  <h2 class="mb-5 pt-4">A Propos</h2>
+  <!--Section description-->
+  <p class="mb-5 pb-3 text-justify text-to-edit" (click)="editContent.show()">{{ site.about.content }}</p>
 
-    <!-- Section Objectif -->
-    <div class="row">
-      <div class="col-md">
-        <h3 class="my-3">Objectifs</h3>
-        <p class="text-justify text-to-edit">{{ site.about.goal }}</p>
-      </div>
-      <div class="col-md text-center">
-        <div *ngIf="site.about.illustration" class="selector">
-            <img [src]="site.about.illustration" alt="Avatar" class="image img-fluid w-100 rounded z-depth-2">
-            <div *ngIf="!currentUpload" class="middle">
-              <div class="form-group">
-                <label>Choisir une image</label>
-                <input type="file"
-                        id="illustration"
-                        (change)="detectFiles($event); onDeclareUpload('illustration')"
-                        mdbInputDirective>
-              </div>
-            </div>
-            <div class="over" *ngIf="currentUpload && uploaded == 'illustration'">
-              <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddIllustration()">Valider</button>                               
-              <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
-                  <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}" [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="!site.about.illustration" class="form-group">
-            <label>Choisir une image</label>
+  <!-- Section Objectif -->
+  <div class="row">
+    <div class="col-md">
+      <h3 class="my-3">Objectifs</h3>
+      <p class="text-justify text-to-edit" (click)="editGoal.show()">{{ site.about.goal }}</p>
+    </div>
+    <div class="col-md text-center">
+      <div *ngIf="site.about.illustration" class="selector">
+        <img [src]="site.about.illustration" alt="Avatar" class="image img-fluid w-100 rounded z-depth-2">
+        <div *ngIf="!currentUpload" class="middle">
+          <div class="form-group">
+            <label for="illustration" class="ml-0 btn btn-block btn-primary" mdbInputDirective>Choisir une image</label>
             <input type="file"
-                    id="photoAuthor"
-                    (change)="detectFiles($event); onDeclareUpload('illustration')"
-                    mdbInputDirective>
-            <div *ngIf="currentUpload && uploaded == 'illustration'">
-              <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddIllustration()">Valider</button>                               
-              <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
-                  <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}" [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
+                   id="illustration"
+                   style="display: none;"
+                   (change)="detectFiles($event); onDeclareUpload('illustration')"
+                   mdbInputDirective>
           </div>
+        </div>
+        <div class="over" *ngIf="currentUpload && uploaded == 'illustration'">
+          <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddIllustration()">Valider
+          </button>
+          <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}"
+                 [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!site.about.illustration" class="form-group">
+        <label for="illustration" class="ml-0 btn btn-block btn-primary" mdbInputDirective>Choisir une image</label>
+        <input type="file"
+               style="display: none"
+               id="illustration"
+               (change)="detectFiles($event); onDeclareUpload('illustration')"
+               mdbInputDirective>
+        <div *ngIf="currentUpload && uploaded == 'illustration'">
+          <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddIllustration()">Valider
+          </button>
+          <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}"
+                 [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Section Story -->
-    <div class="row mt-5">
-      <div class="col-md text-center">
-        <div *ngIf="site.about.photoAuthor" class="selector">
-          <img [src]="site.about.photoAuthor" alt="Avatar" class="image img-fluid w-100 rounded z-depth-2">
-          <div *ngIf="!currentUpload" class="middle">
-            <div class="form-group">
-              <label>Choisir une image</label>
-              <input type="file"
-                      id="photoAuthor"
-                      (change)="detectFiles($event); onDeclareUpload('photoAuthor')"
-                      mdbInputDirective>
-            </div>
-          </div>
-          <div class="over" *ngIf="currentUpload && uploaded == 'photoAuthor'">
-            <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddPhotoAuthor()">Valider</button>                               
-            <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
-                <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}" [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+  <!-- Section Story -->
+  <div class="row mt-5">
+    <div class="col-md text-center">
+      <div *ngIf="site.about.photoAuthor" class="selector">
+        <img [src]="site.about.photoAuthor" alt="Avatar" class="image img-fluid w-100 rounded z-depth-2">
+        <div *ngIf="!currentUpload" class="middle">
+          <div class="form-group">
+            <label for="photoAuthor" class="ml-0 btn btn-block btn-primary" mdbInputDirective>Choisir une image</label>
+            <input type="file"
+                   id="photoAuthor"
+                   style="display:none;"
+                   (change)="detectFiles($event); onDeclareUpload('photoAuthor')"
+                   mdbInputDirective>
           </div>
         </div>
-        <div *ngIf="!site.about.photoAuthor" class="form-group">
-          <label>Choisir une image</label>
-          <input type="file"
-                  id="photoAuthor"
-                  (change)="detectFiles($event); onDeclareUpload('photoAuthor')"
-                  mdbInputDirective>
-          <div *ngIf="currentUpload && uploaded == 'photoAuthor'">
-            <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddPhotoAuthor()">Valider</button>                               
-            <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
-                <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}" [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+        <div class="over" *ngIf="currentUpload && uploaded == 'photoAuthor'">
+          <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddPhotoAuthor()">Valider
+          </button>
+          <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}"
+                 [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>
       </div>
-      <div class="col-md">
-        <h3 class="my-3">Mon Histoire</h3>
-        <p class="text-justify text-to-edit">{{ site.about.storyAuthor }}</p>
+      <div *ngIf="!site.about.photoAuthor" class="form-group">
+        <label for="photoAuthor" class="ml-0 btn btn-block btn-primary" mdbInputDirective>Choisir une image</label>
+        <input type="file"
+               id="photoAuthor"
+               style="display:none;"
+               (change)="detectFiles($event); onDeclareUpload('photoAuthor')"
+               mdbInputDirective>
+        <div *ngIf="currentUpload && uploaded == 'photoAuthor'">
+          <button class="btn btn-success" *ngIf="currentUpload.progress == 100" (click)="onAddPhotoAuthor()">Valider
+          </button>
+          <div class="progress animated fadeIn" *ngIf="currentUpload.progress < 100">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{'width.%': currentUpload.progress}"
+                 [aria-valuenow]="currentUpload.progress" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <hr>
+    <div class="col-md">
+      <h3 class="my-3">Mon Histoire</h3>
+      <p class="text-justify text-to-edit" (click)="editStory.show()">{{ site.about.storyAuthor }}</p>
+    </div>
+  </div>
+
+  <hr>
 </section>
 <!--Section: Accueil-->
+
+<!--Modal: Text From-->
+<div mdbModal #editStory="mdb-modal" class="modal fade" id="editStory" tabindex="-1" role="dialog" aria-labelledby="editStory" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header deep-purple darken-2 white-text">
+        <h4 class="title"><i class="fa fa-newspaper-o"></i> Editer la Story</h4>
+        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="editStory.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body mb-0">
+
+        <form [formGroup]="editStoryForm" (ngSubmit)="onEditStory()" class="card-body">
+          <div class="md-form">
+            <input type="text"
+                   id="text"
+                   class="form-control"
+                   formControlName="text"
+                   [mdbValidate]="false"
+                   [value]="site.about.storyAuthor"
+                   mdbInputDirective>
+            <label for="text">Story</label>
+          </div>
+
+          <button class="btn btn-primary mx-auto mt-3"
+                  type="submit"
+                  (click)="editStory.hide()"
+                  mdbWavesEffect
+                  [disabled]="editStoryForm.invalid">Editer la story</button>
+        </form>
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Text From-->
+
+<!--Modal: Text From-->
+<div mdbModal #editGoal="mdb-modal" class="modal fade" id="editGoal" tabindex="-1" role="dialog" aria-labelledby="editGoal" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header deep-purple darken-2 white-text">
+        <h4 class="title"><i class="fa fa-newspaper-o"></i> Editer l'objectif</h4>
+        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="editGoal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body mb-0">
+
+        <form [formGroup]="editGoalForm" (ngSubmit)="onEditGoal()" class="card-body">
+          <div class="md-form">
+            <input type="text"
+                   id="text"
+                   class="form-control"
+                   formControlName="text"
+                   [mdbValidate]="false"
+                   [value]="site.about.goal"
+                   mdbInputDirective>
+            <label for="text">Story</label>
+          </div>
+
+          <button class="btn btn-primary mx-auto mt-3"
+                  type="submit"
+                  (click)="editGoal.hide()"
+                  mdbWavesEffect
+                  [disabled]="editGoalForm.invalid">Editer l'objectif</button>
+        </form>
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Text From-->
+
+<!--Modal: Text From-->
+<div mdbModal #editContent="mdb-modal" class="modal fade" id="editContent" tabindex="-1" role="dialog" aria-labelledby="editContent" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header deep-purple darken-2 white-text">
+        <h4 class="title"><i class="fa fa-newspaper-o"></i> Editer la description</h4>
+        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="editContent.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body mb-0">
+
+        <form [formGroup]="editContentForm" (ngSubmit)="onEditContent()" class="card-body">
+          <div class="md-form">
+            <input type="text"
+                   id="text"
+                   class="form-control"
+                   formControlName="text"
+                   [mdbValidate]="false"
+                   [value]="site.about.content"
+                   mdbInputDirective>
+            <label for="text">Description</label>
+          </div>
+
+          <button class="btn btn-primary mx-auto mt-3"
+                  type="submit"
+                  (click)="editContent.hide()"
+                  mdbWavesEffect
+                  [disabled]="editContentForm.invalid">Editer la description</button>
+        </form>
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Text From-->

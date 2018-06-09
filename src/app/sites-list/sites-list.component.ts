@@ -15,6 +15,8 @@ export class SitesListComponent implements OnInit, OnDestroy {
   title: string = "Mes Sites";
   subtitle: string = "Liste des tous vos sites, sélectionnez en un !";
 
+  siteToDelete: Site;
+
   sites: Site[];
   sitesSubscription: Subscription;
 
@@ -34,8 +36,8 @@ export class SitesListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/sites', 'new']);
   }
 
-  onDeleteSite(site: Site) {
-    this.sitesService.removeSite(site);
+  onDeleteSite() {
+    this.sitesService.removeSite(this.siteToDelete);
   }
 
   onViewSite(id: number) {
@@ -51,7 +53,7 @@ export class SitesListComponent implements OnInit, OnDestroy {
     this.sitesService.getSitesOrderByAuthor();
     this.sitesService.emitSites();
   }
-  
+
   ngOnDestroy() {
     this.sitesSubscription.unsubscribe();
   }

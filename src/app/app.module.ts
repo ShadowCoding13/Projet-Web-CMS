@@ -42,6 +42,7 @@ import { PublicDefaultHomeComponent } from './public-site/template/default/publi
 import { PublicDefaultAboutComponent } from './public-site/template/default/public-default-about/public-default-about.component';
 import { PublicDefaultBlogComponent } from './public-site/template/default/public-default-blog/public-default-blog.component';
 import { PublicDefaultContactComponent } from './public-site/template/default/public-default-contact/public-default-contact.component';
+import { DocumentationComponent } from './documentation/documentation.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { PublicDefaultContactComponent } from './public-site/template/default/pu
     PublicDefaultAboutComponent,
     PublicDefaultBlogComponent,
     PublicDefaultContactComponent,
+    DocumentationComponent,
   ],
   imports: [
     BrowserModule,

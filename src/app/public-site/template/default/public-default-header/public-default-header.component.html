@@ -1,7 +1,11 @@
 <!-- Header -->
 <header>
   <!--Navbar-->
-  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo w-100 fixed-top">    
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark w-100 fixed-top"
+              style=" background: transparent;
+                        position: absolute;
+                        width: 100%;
+                        top: 0px;">>
       <!-- Navbar brand -->
       <logo><a class="navbar-brand" href="#">{{ site.title }}</a></logo>
       <!-- Collapsible content -->
@@ -19,11 +23,19 @@
   <!--/.Navbar-->
 
   <!-- Jumbotron -->
-  <div class="jumbotron text-center linear-blue">
-      <h1 class="h1-responsive">{{ site.title }}</h1>
-      <p class="lead">{{ site.author }}</p>
-      <hr class="my-2">
-      <a class="btn transparent btn-lg waves-light" [href]="url + '#' + 3"  role="button" mdbWavesEffect>Contactez nous !</a>
+  <div class="jumbotron text-center"
+       [ngClass]="{ 'linear-blue': site.background == 'blue',
+                      'linear-black': site.background == 'black',
+                      'linear-green': site.background == 'green',
+                      'linear-red': site.background == 'red'}">
+    <h1 class="h1-responsive" style="margin-top: 40px">{{ site.title }}</h1>
+    <p class="lead">{{ site.author }}</p>
+    <hr class="my-2">
+    <a class="btn btn-lg waves-light" [href]="url + '#' + 3"  role="button" mdbWavesEffect
+       [ngClass]="{ 'indigo': site.background == 'blue',
+                      'black': site.background == 'black',
+                      'green': site.background == 'green',
+                      'red': site.background == 'red'}">Contactez nous !</a>
   </div>
 
 </header>

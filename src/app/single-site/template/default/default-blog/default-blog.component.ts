@@ -21,7 +21,7 @@ export class DefaultBlogComponent implements OnInit {
 
   @Input() site: Site
 
-  constructor(private sitesService: SitesService, 
+  constructor(private sitesService: SitesService,
               private uploadService: UploadService,
               private formBuilder: FormBuilder) { }
 
@@ -75,7 +75,18 @@ export class DefaultBlogComponent implements OnInit {
       author: author,
       content: contenu,
     };
-    this.site.blog.articles[articleIndex].comments.push(newComment);
+    if (this.site.blog.articles[articleIndex].comments) {
+      this.site.blog.articles[articleIndex]['comments'].push(newComment);
+    } else {
+      const setArticle = new Object();
+      setArticle['content'] = this.site.blog.articles[articleIndex].content;
+      setArticle['illustration'] = this.site.blog.articles[articleIndex].illustration;
+      setArticle['title'] = this.site.blog.articles[articleIndex].title;
+      setArticle['categorie'] = this.site.blog.articles[articleIndex].categorie;
+      setArticle['comments'] = [];
+      setArticle['comments'].push(newComment);
+      this.site.blog.articles[articleIndex] = setArticle as any;
+    }
     this.sitesService.updateSite(this.site);
   }
 

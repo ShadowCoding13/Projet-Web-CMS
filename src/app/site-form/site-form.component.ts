@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './site-form.component.html',
   styleUrls: ['./site-form.component.scss']
 })
+
 export class SiteFormComponent implements OnInit {
 
   title: string = "Créer un site";

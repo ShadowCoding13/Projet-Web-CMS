@@ -1,78 +1,85 @@
 <app-jumbotron [title]=title [subtitle]=subtitle></app-jumbotron>
 
 <div class="my-4">
-    <h4 class="text-center m-4 animated fadeInUp" *ngIf="sites.length === 0">Vous n'avez actuellement aucun site, veuillez en créer un d'abord</h4>
-    <div class="d-flex justify-content-center w-100 animated fadeInUp">
-        <button class="btn btn-primary w-25" *ngIf="sites.length === 0" (click)="onNewSite()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-    </div>
-    <div class="container">
-        <div class="md-form input-group search-site mx-auto my-5 animated fadeInUp" *ngIf="sites.length > 0">
-            <input type="search" class="form-control" placeholder="Search for...">
-            <div class="input-group-btn">
-                <button class="btn btn-primary waves-light" type="button" mdbWavesEffect><i class="fa fa-search" aria-hidden="true"></i></button>
-                <button class="btn btn-primary" (click)="onNewSite()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                
-                <div class="btn-group" dropdown>
-                    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle waves-light" mdbWavesEffect>
-                        <i class="fa fa-filter" aria-hidden="true"></i>
-                    </button>
-                
-                    <div class="dropdown-menu dropdown-primary dropdown-menu-right">
-                        <a class="dropdown-item" (click)="onOrderByTitle()">Par titre</a>
-                        <a class="dropdown-item" (click)="onOrderByAuthor()">Par auteur</a>
-                        <a class="dropdown-item" (click)="onOrderByTitle()">Par dernière modification</a>
-                    </div>
-                </div>
-                
-            </div>
+  <h4 class="text-center m-4 animated fadeInUp" *ngIf="sites.length === 0">Vous n'avez actuellement aucun site, veuillez
+    en créer un d'abord</h4>
+  <div class="d-flex justify-content-center w-100 animated fadeInUp">
+    <button class="btn btn-primary w-25" *ngIf="sites.length === 0" (click)="onNewSite()"><i class="fa fa-plus"
+                                                                                             aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="container">
+    <div class="md-form input-group search-site mx-auto my-5 animated fadeInUp" *ngIf="sites.length > 0">
+      <input type="search" class="form-control" placeholder="Search for...">
+      <div class="input-group-btn">
+        <button class="btn btn-primary waves-light" type="button" mdbWavesEffect><i class="fa fa-search"
+                                                                                    aria-hidden="true"></i></button>
+        <button class="btn btn-primary" (click)="onNewSite()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+        <div class="btn-group" dropdown>
+          <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle waves-light" mdbWavesEffect>
+            <i class="fa fa-filter" aria-hidden="true"></i>
+          </button>
+
+          <div class="dropdown-menu dropdown-primary dropdown-menu-right">
+            <a class="dropdown-item" (click)="onOrderByTitle()">Par titre</a>
+            <a class="dropdown-item" (click)="onOrderByAuthor()">Par auteur</a>
+            <a class="dropdown-item" (click)="onOrderByTitle()">Par dernière modification</a>
+          </div>
         </div>
+
+      </div>
     </div>
-    <div class="site-list">
-        <div    class="card m-3 animated fadeInUp"
-        style="max-width: 400px; width: 92%"
-                *ngFor="let site of sites; let i = index">
-            <div class="card-header deep-purple darken-2 text-white">{{ site.author }}</div>
-            <div class="card-body">
-                <h2 class="card-title">{{ site.title }}</h2>
-                <p class="card-text">{{ site.description }}</p>
-            </div>
-            
-            <div class="card-footer d-flex">
-                <button class="btn btn-danger" (click)="delete.show()">
-                    <i class="fa fa-remove" aria-hidden="true"></i>
-                </button>
-                <button class="btn btn-primary" (click)="onViewSite(i)">
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
+  </div>
+  <div class="site-list">
+    <div class="card m-3 animated fadeInUp"
+         style="max-width: 400px; width: 92%"
+         *ngFor="let site of sites; let i = index">
+      <div class="card-header deep-purple darken-2 text-white">{{ site.author }}</div>
+      <div class="card-body">
+        <h2 class="card-title">{{ site.title }}</h2>
+        <p class="card-text">{{ site.description }}</p>
+      </div>
+
+      <div class="card-footer d-flex">
+        <button class="btn btn-danger" (click)="delete.show(); siteToDelete = site">
+          <i class="fa fa-remove" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-primary" (click)="onViewSite(i)">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- Boite modal de suppression du compte -->
-<div mdbModal #delete="mdb-modal" class="modal fade" id="delete-user" tabindex="-1" role="dialog" aria-labelledby="Supprimer mon compte" aria-hidden="true">
-        <div class="modal-dialog modal-notify modal-danger" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <p class="heading lead">Confirmation de suppression du site</p>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="delete.hide()">
-                        <span aria-hidden="true" class="white-text">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="text-center">
-                        <i class="fa fa-warning fa-4x mb-3 animated rotateIn"></i>
-                        <p>
-                            Êtes-vous sûr de vouloir supprimer votre site ?<br>
-                            Cette opération est irreversible avec de lourdes conséquences.
-                            Vous n'aurez aucun moyen de les récupérer à l'avenir.
-                        </p>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <a type="button" class="btn btn-danger waves-light" (click)="onDeleteSite(); delete.hide()" mdbWavesEffect>Valider</a>
-                    <a type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="delete.hide()" mdbWavesEffect>Annuler</a>
-                </div>
-            </div>
+<div mdbModal #delete="mdb-modal" class="modal fade" id="delete-user" tabindex="-1" role="dialog"
+     aria-labelledby="Supprimer mon compte" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="heading lead">Confirmation de suppression du site</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="delete.hide()">
+          <span aria-hidden="true" class="white-text">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <i class="fa fa-warning fa-4x mb-3 animated rotateIn"></i>
+          <p>
+            Êtes-vous sûr de vouloir supprimer votre site ?<br>
+            Cette opération est irreversible avec de lourdes conséquences.
+            Vous n'aurez aucun moyen de les récupérer à l'avenir.
+          </p>
         </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <a type="button" class="btn btn-danger waves-light" (click)="onDeleteSite(); delete.hide()"
+           mdbWavesEffect>Valider</a>
+        <a type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="delete.hide()"
+           mdbWavesEffect>Annuler</a>
+      </div>
     </div>
+  </div>
+</div>

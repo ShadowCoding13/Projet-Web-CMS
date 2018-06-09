@@ -72,9 +72,13 @@
                         <label for="categorie">Contenu</label>
                     </div>
 
-                    <button class="btn btn-primary mx-auto mt-3"
+                    <button class="btn mx-auto mt-3"
+                            [ngClass]="{ 'indigo': site.background == 'blue',
+                                          'black': site.background == 'black',
+                                          'green': site.background == 'green',
+                                          'red': site.background == 'red'}"
                             type="submit"
-                            mdbWavesEffect 
+                            mdbWavesEffect
                             [disabled]="addCommentForm.invalid">Ajouter un commentaire</button>
                 </form>
             </div>
@@ -83,7 +87,7 @@
 
     </article>
   </div>
-  
+
   <!--Post row-->
 
   <p *ngIf="!site.blog"><i>Il n'y a pour le moment aucun article.</i></p>

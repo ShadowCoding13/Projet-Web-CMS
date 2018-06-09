@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Site } from '../models/site.model';
 import { SitesService } from '../services/sites.service';
@@ -24,8 +24,12 @@ export class PublicSiteComponent implements OnInit {
         this.site = site;
       }
     );
-    console.log(this.site)
-    this.url = this.router.url
+    this.url = this.router.url;
+    this.sitesService.isPublic = true;
+  }
+
+  ngOnDestroy(){
+    this.sitesService.isPublic = false;
   }
 
 }

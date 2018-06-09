@@ -3,6 +3,7 @@ import { Site } from '../../../../models/site.model';
 import { Upload } from '../../../../models/upload.model';
 import { SitesService } from '../../../../services/sites.service';
 import { UploadService } from '../../../../services/upload.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-default-about',
@@ -16,11 +17,29 @@ export class DefaultAboutComponent implements OnInit {
   selectedFiles: FileList;
   currentUpload: Upload;
   uploaded: string;
+  editStoryForm: FormGroup;
+  editGoalForm: FormGroup;
+  editContentForm: FormGroup;
 
 
-  constructor(private sitesService: SitesService, private uploadService: UploadService) { }
+  constructor(private sitesService: SitesService,
+              private uploadService: UploadService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.initForm();
+  }
+
+  initForm() {
+    this.editStoryForm = this.formBuilder.group({
+      text: [],
+    });
+    this.editGoalForm = this.formBuilder.group({
+      text: [],
+    });
+    this.editContentForm = this.formBuilder.group({
+      text: [],
+    });
   }
 
   onAddIllustration() {
@@ -37,7 +56,7 @@ export class DefaultAboutComponent implements OnInit {
 
   detectFiles(event) {
     this.selectedFiles = event.target.files;
-    this.uploadIllustration(); 
+    this.uploadIllustration();
   }
 
   uploadIllustration(){
@@ -48,6 +67,21 @@ export class DefaultAboutComponent implements OnInit {
 
   onDeclareUpload(select){
     this.uploaded = select
+  }
+
+  onEditStory() {
+    this.site.about.storyAuthor = this.editStoryForm.get('text').value;
+    this.sitesService.updateSite(this.site);
+  }
+
+  onEditGoal() {
+    this.site.about.goal = this.editGoalForm.get('text').value;
+    this.sitesService.updateSite(this.site);
+  }
+
+  onEditContent() {
+    this.site.about.content = this.editContentForm.get('text').value;
+    this.sitesService.updateSite(this.site);
   }
 
   resetUpload(){

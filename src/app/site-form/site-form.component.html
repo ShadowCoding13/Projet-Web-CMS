@@ -1,3 +1,4 @@
+<app-header></app-header>
 <app-jumbotron [title]=title [subtitle]=subtitle></app-jumbotron>
 
 <div class="card new-site-card my-5 animated wow fadeInLeft">
@@ -5,71 +6,72 @@
     <h2>Enregistrer un nouveau site</h2>
     <div class="md-form">
       <label for="title">Titre</label>
-      <input type="text" 
+      <input type="text"
               id="title"
-              class="form-control" 
+              class="form-control"
               formControlName="title"
               [mdbValidate]=false
               mdbInputDirective>
     </div>
     <div class="md-form">
       <label for="author">Auteur</label>
-      <input type="text" 
+      <input type="text"
               id="author"
-              class="form-control" 
+              class="form-control"
               formControlName="author"
               [mdbValidate]=false
               mdbInputDirective>
     </div>
     <div class="md-form">
       <label for="description">Description</label>
-      <input type="text" 
+      <input type="text"
               id="description"
-              class="form-control" 
+              class="form-control"
               formControlName="description"
               [mdbValidate]=false
               mdbInputDirective>
     </div>
     <div class="md-form">
       <label for="tel">Téléphone</label>
-      <input type="tel" 
+      <input type="tel"
               id="tel"
-              class="form-control" 
+              class="form-control"
               formControlName="tel"
               [mdbValidate]=false
               mdbInputDirective>
     </div>
     <div class="md-form">
       <label for="mail">Email</label>
-      <input type="email" 
+      <input type="email"
               id="mail"
-              class="form-control" 
+              class="form-control"
               formControlName="mail"
               [mdbValidate]=false
               mdbInputDirective>
     </div>
     <div class="md-form">
       <label for="city">Ville</label>
-      <input type="text" 
+      <input type="text"
               id="city"
-              class="form-control" 
+              class="form-control"
               formControlName="city"
               [mdbValidate]=false
               mdbInputDirective>
     </div>
     <div class="md-form">
       <label for="address">Adresse</label>
-      <input type="text" 
+      <input type="text"
               id="addres"
-              class="form-control" 
+              class="form-control"
               formControlName="address"
               [mdbValidate]=false
               mdbInputDirective>
     </div>
-    <button class="btn btn-success mx-auto mt-3" 
+    <button class="btn btn-success mx-auto mt-3"
             [disabled]="siteForm.invalid"
             type="submit">Enregistrer
     </button>
 
   </form>
 </div>
+<app-footer></app-footer>
